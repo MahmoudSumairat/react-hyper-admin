@@ -1,0 +1,20 @@
+.logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+
+  &__first,
+  &__last {
+    color: $white;
+    font-size: 28px;
+    margin: 0 2px;
+  }
+
+  &__first {
+    font-weight: 200;
+  }
+
+  &__last {
+    font-weight: 600;
+  }
+}

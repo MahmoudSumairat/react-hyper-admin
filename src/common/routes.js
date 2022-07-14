@@ -1,8 +1,16 @@
-export const routes = [
-  {
-    name: "Home",
-    path: "/",
-  },
-];
+import React from "react";
+import { Route, Routes } from "react-router";
+import Home from "../pages/Home/Home";
+import routes from "./routesList";
 
-export default routes;
+const PageRoutes = () => {
+  return (
+    <Routes>
+      {routes.map((route) => {
+        return <Route exact path={route.path} element={<route.component />} />;
+      })}
+    </Routes>
+  );
+};
+
+export default PageRoutes;

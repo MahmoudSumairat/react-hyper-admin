@@ -1,12 +1,26 @@
 // Third Parties
-@import "/node_modules/bootstrap/scss/bootstrap.scss";
+@import "/node_modules/bootstrap/scss/bootstrap";
+// @import "/node_modules/font-awesome/scss/font-awesome.scss";
+
+// utils
+@import "./scss/variables";
+@import "./scss/general";
 
 //  Layout Styles
-@import "./components/layout/Header/header.scss";
-@import "./components/layout/Sidenav/sidenav.scss";
+@import "./components/layout/Header/header";
+@import "./components/layout/Sidenav/sidenav";
+@import "./components/layout/Sidenav/NavList/navList";
+@import "./components/layout/Sidenav/Logo/logo";
 
 // Form styles
-@import "./components/form/Checkbox/checkbox.scss";
-@import "./components/form/Radio/radio.scss";
-@import "./components/form/TextField/textField.scss";
-@import "./components/form/Select/select.scss";
+@import "./components/form/Checkbox/checkbox";
+@import "./components/form/Radio/radio";
+@import "./components/form/TextField/textField";
+@import "./components/form/Select/select";
+
+// Other components
+@import "./components/PageName/pageName";
+
+// Pages
+@import "./pages/Home/home";
+@import "./pages/Users/users";
