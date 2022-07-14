@@ -1,0 +1,12 @@
+// Third Parties
+@import "/node_modules/bootstrap/scss/bootstrap.scss";
+
+//  Layout Styles
+@import "./components/layout/Header/header.scss";
+@import "./components/layout/Sidenav/sidenav.scss";
+
+// Form styles
+@import "./components/form/Checkbox/checkbox.scss";
+@import "./components/form/Radio/radio.scss";
+@import "./components/form/TextField/textField.scss";
+@import "./components/form/Select/select.scss";
