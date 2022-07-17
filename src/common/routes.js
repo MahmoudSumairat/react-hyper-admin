@@ -6,7 +6,14 @@ const PageRoutes = () => {
   return (
     <Routes>
       {routes.map((route) => {
-        return <Route exact path={route.path} element={<route.component />} />;
+        return (
+          <Route
+            key={route.name}
+            exact
+            path={route.path}
+            element={<route.component />}
+          />
+        );
       })}
     </Routes>
   );

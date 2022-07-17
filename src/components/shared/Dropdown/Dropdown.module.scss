@@ -1,0 +1,19 @@
+@import "../../../scss/variables";
+
+.sharedDropdown {
+  position: absolute;
+  top: 120%;
+  box-shadow: 5px 5px 14px rgba($muted, 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+  right: 10%;
+  background-color: $white;
+}
+
+.sharedDropdownDivider {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  border-top: 1px solid $primary;
+}
