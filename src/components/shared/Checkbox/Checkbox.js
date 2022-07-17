@@ -19,9 +19,7 @@ const Checkbox = (props) => {
     <div className={`${checkboxContainer} ${className}`}>
       <input
         {...props}
-        onChange={() => {
-          console.log("222");
-        }}
+        onChange={onChange}
         id={id}
         className={checkboxInput}
         type="checkbox"
