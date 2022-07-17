@@ -3,9 +3,11 @@ import PageName from "../../PageName/PageName";
 import UserOptions from "./UserOptions/UserOptions";
 import styles from "./Header.module.scss";
 
+const { header } = styles;
+
 const Header = () => {
   return (
-    <header className={styles.header}>
+    <header className={header}>
       <PageName />
       <UserOptions />
     </header>

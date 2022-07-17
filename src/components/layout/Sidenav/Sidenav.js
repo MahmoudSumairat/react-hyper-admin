@@ -3,14 +3,17 @@ import Logo from "../../Logo/Logo";
 import NavList from "./NavList/NavList";
 import styles from "./Sidenav.module.scss";
 
+const { sidenav, sidenavBranding, sidenavNavContainer, sidenavNavList } =
+  styles;
+
 const Sidenav = () => {
   return (
-    <div className={styles.sidenav}>
-      <div className={styles.sidenavBranding}>
+    <div className={sidenav}>
+      <div className={sidenavBranding}>
         <Logo />
       </div>
-      <nav className={styles.sidenavNavContainer}>
-        <ul className={styles.sidenavNavList}>
+      <nav className={sidenavNavContainer}>
+        <ul className={sidenavNavList}>
           <NavList />
         </ul>
       </nav>

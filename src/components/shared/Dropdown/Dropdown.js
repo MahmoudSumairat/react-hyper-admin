@@ -10,17 +10,20 @@ const Dropdown = ({
   onSelectionChange = () => {},
   onDropdownShow = () => {},
   onDropdownHide = () => {},
+  className = "",
+  parentNode = null,
 }) => {
   const node = useRef();
 
   const clickOutside = (e) => {
-    if (node.current && node.current.contains(e.target)) {
-      // inside click
-      console.log("clicked inside");
+    if (
+      (node.current && node.current.contains(e.target)) ||
+      (parentNode &&
+        parentNode.current &&
+        parentNode.current.contains(e.target))
+    ) {
       return;
     }
-    // outside click
-    console.log("clicked outside scope");
     onDropdownHide();
   };
 
@@ -48,14 +51,20 @@ const Dropdown = ({
       onExit={onDropdownHide}
       nodeRef={node}
     >
-      <ul ref={node} className={styles.sharedDropdown}>
+      <ul ref={node} className={`${styles.sharedDropdown} ${className} `}>
         {items.map((item) => {
           return (
             <Fragment key={item.id}>
               {item.withDivider && (
                 <hr className={styles.sharedDropdownDivider} />
               )}
-              <DropdownItem item={item} onSelectionChange={onSelectionChange} />
+              <DropdownItem
+                item={item}
+                onSelectionChange={(item) => {
+                  onSelectionChange(item);
+                  onDropdownHide();
+                }}
+              />
             </Fragment>
           );
         })}

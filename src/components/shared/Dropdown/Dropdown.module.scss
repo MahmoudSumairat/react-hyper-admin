@@ -6,8 +6,9 @@
   box-shadow: 5px 5px 14px rgba($muted, 0.2);
   border-radius: 15px;
   overflow: hidden;
-  right: 10%;
+  left: 0;
   background-color: $white;
+  width: 100%;
 }
 
 .sharedDropdownDivider {

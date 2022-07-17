@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { faGear, faPowerOff, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dropdown from "../../../shared/Dropdown/Dropdown";
 import styles from "./UserOptions.module.scss";
 
+const { userOptions, userOptionsButton, userOptionsDropdown } = styles;
+
 const UserOptions = () => {
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
-
+  const node = useRef();
   const userOptionsList = [
     {
       displayName: "Profile",
@@ -28,17 +30,20 @@ const UserOptions = () => {
   ];
 
   return (
-    <div className={styles.userOptions}>
+    <div className={userOptions}>
       <button
+        ref={node}
         onClick={() => setShowOptionsDropdown(!showOptionsDropdown)}
-        className={styles.userOptionsButton}
+        className={userOptionsButton}
       >
         <FontAwesomeIcon icon={faUser} />
         <Dropdown
+          parentNode={node}
           showDropdown={showOptionsDropdown}
           items={userOptionsList}
           onDropdownHide={() => setShowOptionsDropdown(false)}
           onDropdownShow={() => setShowOptionsDropdown(true)}
+          className={userOptionsDropdown}
         />
       </button>
     </div>
