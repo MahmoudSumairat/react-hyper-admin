@@ -1,32 +1,30 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Link } from "react-router-dom";
-import styles from "./DropdownItem.module.scss";
+import styles from "./styles.module.scss";
+
+const { dropdownItemText, dropdownItem } = styles;
 
 const DropdownItem = ({ item, onSelectionChange }) => {
-  const itemProps = {
-    className: styles.dropdownItem,
-  };
-
-  const itemHTML = (
+  const itemInnerHTML = (
     <>
       {item.icon && <FontAwesomeIcon icon={item.icon} />}
-      <span className={styles.dropdownItemText}>{item.displayName}</span>
+      <span className={dropdownItemText}>{item.displayName}</span>
     </>
   );
 
   return item.linkTo ? (
-    <Link {...itemProps} to={item.linkTo}>
-      {itemHTML}
+    <Link className={dropdownItem} to={item.linkTo}>
+      {itemInnerHTML}
     </Link>
   ) : (
     <li
-      {...itemProps}
+      className={dropdownItem}
       onClick={() => {
         item.onClick ? item.onClick(item) : onSelectionChange(item);
       }}
     >
-      {itemHTML}
+      {itemInnerHTML}
     </li>
   );
 };

@@ -1,6 +1,8 @@
 import React from "react";
 import { useLocation } from "react-router";
-import styles from "./PageName.module.scss";
+import styles from "./styles.module.scss";
+
+const { pageName, pageNameText } = styles;
 
 const PageName = () => {
   const location = useLocation();
@@ -12,8 +14,8 @@ const PageName = () => {
   };
 
   return (
-    <div className={styles.pageName}>
-      <span className={styles.pageNameText}>{getPageName()}</span>
+    <div className={pageName}>
+      <span className={pageNameText}>{getPageName()}</span>
     </div>
   );
 };

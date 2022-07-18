@@ -1,11 +1,13 @@
 import React from "react";
-import styles from "./Logo.module.scss";
+import styles from "./styles.module.scss";
+
+const { logo, logoFirstWord, logoLastWord } = styles;
 
 const Logo = () => {
   return (
-    <div className={styles.logo}>
-      <span className={styles.logoFirstWord}>Tickatak</span>
-      <span className={styles.logoLastWord}>Admin</span>
+    <div className={logo}>
+      <span className={logoFirstWord}>Tickatak</span>
+      <span className={logoLastWord}>Admin</span>
     </div>
   );
 };
