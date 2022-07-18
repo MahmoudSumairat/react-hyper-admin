@@ -7,10 +7,11 @@ const { form } = styles;
 const Form = ({ formFields }) => {
   return (
     <div className={form}>
-      {formFields.map((field) => {
+      {formFields.map((field, index) => {
         const formComponent = formComponentsMap[field.component];
         return (
           <formComponent.component
+            key={index}
             {...formComponent.props}
             {...field.props}
             width={formFieldWidth[field.width || "full"]}

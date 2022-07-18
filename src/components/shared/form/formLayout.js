@@ -1,4 +1,5 @@
 import Checkbox from "../Checkbox/Checkbox";
+import CommonDatePicker from "../DatePicker/DatePicker";
 import Radio from "../Radio/Radio";
 import TextField from "../TextField/TextField";
 import styles from "./styles.module.scss";
@@ -32,7 +33,7 @@ const formComponentsMap = {
   textarea: {
     component: TextField,
     props: {
-      multiLine: true,
+      multiline: "true",
     },
   },
   numberInput: {
@@ -40,6 +41,9 @@ const formComponentsMap = {
     props: {
       type: "number",
     },
+  },
+  dateInput: {
+    component: CommonDatePicker,
   },
 };
 

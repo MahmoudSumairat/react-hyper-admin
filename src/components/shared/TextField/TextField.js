@@ -11,7 +11,7 @@ const TextField = (props) => {
     id = uuidv4(),
     className = "",
     hasError = false,
-    multiLine = false,
+    multiline = false,
     width,
   } = props;
 
@@ -20,7 +20,7 @@ const TextField = (props) => {
       <label className={textFieldLabel} htmlFor={id}>
         {label}
       </label>
-      {multiLine ? (
+      {multiline ? (
         <textarea className={textFieldInput} id={id} type="text" {...props} />
       ) : (
         <input className={textFieldInput} id={id} type="text" {...props} />
