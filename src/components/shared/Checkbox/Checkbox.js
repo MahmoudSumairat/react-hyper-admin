@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
-import styles from "./Checkbox.module.scss";
+import styles from "./styles.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
 const { checkboxContainer, checkboxInput, checkboxLabel, checkboxIcon } =

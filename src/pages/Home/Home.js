@@ -2,7 +2,7 @@ import React from "react";
 import Checkbox from "../../components/shared/Checkbox/Checkbox";
 import Radio from "../../components/shared/Radio/Radio";
 import Select from "../../components/shared/Select/Select";
-import styles from "./Home.module.scss";
+import styles from "./styles.module.scss";
 
 const { home } = styles;
 
@@ -16,6 +16,14 @@ const Home = () => {
       displayName: "test 2",
       id: 2,
     },
+    {
+      displayName: "test 3",
+      id: 3,
+    },
+    {
+      displayName: "test 4",
+      id: 4,
+    },
   ];
 
   return (
@@ -24,7 +32,12 @@ const Home = () => {
       <Checkbox label="test checkbox" />
       <Radio name="test" />
       <Radio name="test" />
-      <Select items={dummyItems} />
+      <Select
+        value={2}
+        onSelectionChange={(item) => console.log(item)}
+        items={dummyItems}
+        // multiSelect
+      />
     </div>
   );
 };

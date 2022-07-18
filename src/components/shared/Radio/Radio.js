@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Radio.module.scss";
+import styles from "./styles.module.scss";
 import { v4 as uuidv4 } from "uuid";
 
 const { radioContainer, radioLabel, radioInput } = styles;

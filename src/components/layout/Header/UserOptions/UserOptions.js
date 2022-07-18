@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { faGear, faPowerOff, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dropdown from "../../../shared/Dropdown/Dropdown";
-import styles from "./UserOptions.module.scss";
+import styles from "./styles.module.scss";
 
 const { userOptions, userOptionsButton, userOptionsDropdown } = styles;
 
