@@ -1,5 +1,6 @@
 import React from "react";
 import Checkbox from "../../components/shared/Checkbox/Checkbox";
+import Form from "../../components/shared/form/Form";
 import Radio from "../../components/shared/Radio/Radio";
 import Select from "../../components/shared/Select/Select";
 import TextField from "../../components/shared/TextField/TextField";
@@ -29,17 +30,22 @@ const Home = () => {
 
   return (
     <div className={home}>
-      this is the home page
-      <Checkbox label="test checkbox" />
-      <Radio name="test" />
-      <Radio name="test" />
-      <Select
-        value={[2]}
-        onSelectionChange={(item) => console.log(item)}
-        items={dummyItems}
-        multiSelect
+      <Form
+        formFields={[
+          { component: "radio", props: { max: "20" }, width: "quarter" },
+          {
+            component: "checkbox",
+            props: { max: "20", label: "isTrusted" },
+            width: "quarter",
+          },
+          { component: "textInput", props: { max: "20" }, width: "half" },
+          {
+            component: "textarea",
+            width: "threeQuarters",
+          },
+          { component: "numberInput", props: { max: "20" }, width: "quarter" },
+        ]}
       />
-      <TextField type="number" max="20" placeholder="test" />
     </div>
   );
 };

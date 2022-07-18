@@ -13,10 +13,11 @@ const Checkbox = (props) => {
     id = uuidv4(),
     onChange = () => {},
     className = "",
+    width,
   } = props;
 
   return (
-    <div className={`${checkboxContainer} ${className}`}>
+    <div className={`${checkboxContainer} ${className} ${width}`}>
       <input
         {...props}
         onChange={onChange}

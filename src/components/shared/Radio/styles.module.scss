@@ -1,6 +1,11 @@
 @import "../../../styles/variables";
 @import "../../../styles/mixins";
 
+.radioContainer {
+  display: flex;
+  align-items: center;
+}
+
 .radioInput {
   display: none;
 

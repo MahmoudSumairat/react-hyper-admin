@@ -40,6 +40,7 @@ const Select = ({
   className,
   multiSelect,
   value = multiSelect ? [] : "",
+  width,
 }) => {
   if (multiSelect && !value.length) {
     value = [];
@@ -90,7 +91,7 @@ const Select = ({
   };
 
   return (
-    <div className={`${selectContainer} ${className}`}>
+    <div className={`${selectContainer} ${className} ${width}`}>
       <SelectButton
         node={node}
         setShowDropdown={setShowDropdown}

@@ -12,10 +12,11 @@ const TextField = (props) => {
     className = "",
     hasError = false,
     multiLine = false,
+    width,
   } = props;
 
   return (
-    <div className={`${textField} ${className} `}>
+    <div className={`${textField} ${className} ${width} `}>
       <label className={textFieldLabel} htmlFor={id}>
         {label}
       </label>
