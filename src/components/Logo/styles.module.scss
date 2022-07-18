@@ -1,0 +1,22 @@
+@import "../../scss/variables";
+
+.logo {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.logoFirstWord,
+.logoLastWord {
+  color: $white;
+  font-size: 28px;
+  margin: 0 2px;
+}
+
+.logoFirstWord {
+  font-weight: 200;
+}
+
+.logoLastWord {
+  font-weight: 600;
+}

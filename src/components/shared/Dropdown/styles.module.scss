@@ -1,0 +1,12 @@
+@import "../../../scss/variables";
+
+.sharedDropdown {
+  position: absolute;
+  top: 120%;
+  box-shadow: 5px 5px 14px rgba($muted, 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+  left: 0;
+  background-color: $white;
+  width: 100%;
+}

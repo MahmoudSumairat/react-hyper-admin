@@ -1,4 +1,4 @@
-import { faHouse, faUser } from "@fortawesome/free-solid-svg-icons";
+import { faHouse, faUsers } from "@fortawesome/free-solid-svg-icons";
 import Home from "../pages/Home/Home";
 import Users from "../pages/Users/Users";
 
@@ -12,7 +12,7 @@ export const routes = [
   {
     name: "Users",
     path: "/users",
-    icon: faUser,
+    icon: faUsers,
     component: Users,
   },
 ];
