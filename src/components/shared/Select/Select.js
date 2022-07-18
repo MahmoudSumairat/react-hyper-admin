@@ -41,6 +41,10 @@ const Select = ({
   multiSelect,
   value = multiSelect ? [] : "",
 }) => {
+  if (multiSelect && !value.length) {
+    value = [];
+  }
+
   const defaultButtonText = multiSelect
     ? getNamesFromIds(value, items, label) || label
     : getNameForSingleSelectedItem(value, items, label);

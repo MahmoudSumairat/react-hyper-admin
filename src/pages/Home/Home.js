@@ -2,6 +2,7 @@ import React from "react";
 import Checkbox from "../../components/shared/Checkbox/Checkbox";
 import Radio from "../../components/shared/Radio/Radio";
 import Select from "../../components/shared/Select/Select";
+import TextField from "../../components/shared/TextField/TextField";
 import styles from "./styles.module.scss";
 
 const { home } = styles;
@@ -33,11 +34,12 @@ const Home = () => {
       <Radio name="test" />
       <Radio name="test" />
       <Select
-        value={2}
+        value={[2]}
         onSelectionChange={(item) => console.log(item)}
         items={dummyItems}
-        // multiSelect
+        multiSelect
       />
+      <TextField type="number" max="20" placeholder="test" />
     </div>
   );
 };
