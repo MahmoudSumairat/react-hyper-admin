@@ -1,7 +1,7 @@
 import React from "react";
 import Logo from "../../Logo/Logo";
 import NavList from "./NavList/NavList";
-import styles from "./Sidenav.module.scss";
+import styles from "./styles.module.scss";
 
 const { sidenav, sidenavBranding, sidenavNavContainer, sidenavNavList } =
   styles;

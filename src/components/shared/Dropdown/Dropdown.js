@@ -1,8 +1,14 @@
-import React, { Fragment, useEffect, useRef } from "react";
-import { CSSTransition } from "react-transition-group";
-import DropdownItem from "./DropdownItem/DropdownItem";
-import styles from "./Dropdown.module.scss";
-import animationStyles from "../../../animations/FadeUpDown.module.scss";
+import React, { useEffect, useRef } from "react";
+import FadeUpDown from "../../../animations/FadeUpDown/FadeUpDown";
+import DropdownList from "./DropdownList/DropdownList";
+import styles from "./styles.module.scss";
+
+const handleClickOutsideEventListener = (clickOutside) => {
+  document.addEventListener("mousedown", clickOutside);
+  return () => {
+    document.removeEventListener("mousedown", clickOutside);
+  };
+};
 
 const Dropdown = ({
   showDropdown = false,
@@ -12,64 +18,44 @@ const Dropdown = ({
   onDropdownHide = () => {},
   className = "",
   parentNode = null,
+  multiSelect,
+  selectedItemsMap = {},
 }) => {
   const node = useRef();
 
-  const clickOutside = (e) => {
+  const clickOutside = ({ target }) => {
+    const { current } = node;
+    const { current: parentNodeCurrent } = parentNode;
     if (
-      (node.current && node.current.contains(e.target)) ||
-      (parentNode &&
-        parentNode.current &&
-        parentNode.current.contains(e.target))
+      (!current || !current.contains(target)) &&
+      (!parentNode || !parentNodeCurrent || !parentNodeCurrent.contains(target))
     ) {
-      return;
+      onDropdownHide();
     }
-    onDropdownHide();
   };
 
   useEffect(() => {
-    document.addEventListener("mousedown", clickOutside);
-
-    // clean up function before running new effect
-    return () => {
-      document.removeEventListener("mousedown", clickOutside);
-    };
+    handleClickOutsideEventListener(clickOutside);
   });
 
   return (
-    <CSSTransition
-      in={showDropdown}
-      unmountOnExit
-      timeout={200}
-      classNames={{
-        enter: animationStyles.fadeUpDownEnter,
-        enterActive: animationStyles.fadeUpDownEnterActive,
-        exit: animationStyles.fadeUpDownExit,
-        exitActive: animationStyles.fadeUpDownExitActive,
-      }}
+    <FadeUpDown
       onEnter={onDropdownShow}
       onExit={onDropdownHide}
       nodeRef={node}
+      showsIn={showDropdown}
     >
       <ul ref={node} className={`${styles.sharedDropdown} ${className} `}>
-        {items.map((item) => {
-          return (
-            <Fragment key={item.id}>
-              {item.withDivider && (
-                <hr className={styles.sharedDropdownDivider} />
-              )}
-              <DropdownItem
-                item={item}
-                onSelectionChange={(item) => {
-                  onSelectionChange(item);
-                  onDropdownHide();
-                }}
-              />
-            </Fragment>
-          );
-        })}
+        <DropdownList
+          items={items}
+          multiSelect={multiSelect}
+          handleMultiSelectChange={onSelectionChange}
+          selectedItemsMap={selectedItemsMap}
+          onSelectionChange={onSelectionChange}
+          onDropdownHide={onDropdownHide}
+        />
       </ul>
-    </CSSTransition>
+    </FadeUpDown>
   );
 };
 

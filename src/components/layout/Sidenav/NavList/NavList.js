@@ -2,7 +2,7 @@ import React from "react";
 import routes from "../../../../common/routesList";
 import { Link, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "./NavList.module.scss";
+import styles from "./styles.module.scss";
 
 const { active, navListItem, navListItemText } = styles;
 

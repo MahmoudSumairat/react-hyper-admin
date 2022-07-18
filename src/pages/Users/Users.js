@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./Users.module.scss";
+import styles from "./styles.module.scss";
 
 const { users } = styles;
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router";
-import styles from "./PageName.module.scss";
+import styles from "./styles.module.scss";
 
 const { pageName, pageNameText } = styles;
 
