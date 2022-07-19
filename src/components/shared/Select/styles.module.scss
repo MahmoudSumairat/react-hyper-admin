@@ -2,7 +2,8 @@
 
 .selectContainer {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 }
 
 .selectButton {
@@ -38,4 +39,10 @@
   left: 10px;
   bottom: -25px;
   font-size: 14px;
+}
+
+.selectLabel {
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  color: $primary-dark;
 }

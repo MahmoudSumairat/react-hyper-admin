@@ -1,65 +1,40 @@
 import React, { useState } from "react";
 import styles from "./styles.module.scss";
-import { formFieldWidth, formComponentsMap } from "./formLayout";
+import {
+  formFieldWidth,
+  formComponentsMap,
+  getFormFieldsValues,
+  initFormFieldErrors,
+  isInputsDirty,
+  isInputsTouched,
+  isInputsValid,
+} from "./formHelpers";
 import formValidations from "../../../common/formValidations";
+import CommonButton from "../Button/Button";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const { form, formActions } = styles;
 
-const getFormFieldsValues = (formFields) => {
-  const formFieldsValues = {};
-  formFields.forEach((field) => {
-    if (
-      field.props &&
-      field.props.name !== undefined &&
-      (field.props.value !== undefined || field.props.checked)
-    ) {
-      formFieldsValues[field.props.name] =
-        field.props.checked || field.props.value;
-    } else {
-      return console.error(
-        'Error Building Common Form : Any form field should have "Name" and "Value" or "Checked" properties'
-      );
-    }
-  });
-  return formFieldsValues;
-};
-
-const initFormFieldErrors = (formFields) => {
-  const formFieldErrors = {};
-
-  formFields.forEach((field) => {
-    if (
-      field.props &&
-      field.props.name !== undefined &&
-      (field.props.value !== undefined || field.props.checked)
-    ) {
-      formFieldErrors[field.props.name] = {
-        isValid: false,
-        touched: false,
-        message: "",
-        dirty: false,
-      };
-    } else {
-      return console.error(
-        'Error Building Common Form : Any form field should have "Name" and "Value" or "Checked" properties'
-      );
-    }
-  });
-
-  return formFieldErrors;
-};
-
-const Form = ({ formFields, editMode }) => {
+const Form = ({ formFields, editMode, submitButtonText = "submit" }) => {
   const [formFieldsValue, setFormFieldsValue] = useState(
     getFormFieldsValues(formFields)
   );
   const [formFieldErrors, setFormFieldErrors] = useState(
     initFormFieldErrors(formFields)
   );
-
   const [isFormValid, setIsFormValid] = useState(false);
 
-  const handleFormFieldChange = ({ target }, field) => {
+  const handleComparableFieldChange = (field) => {
+    if (field.validationParams && field.validationParams.compareWith) {
+      const comparableField = formFields.find(
+        (formField) => formField.props.name === field.props.name
+      );
+      comparableField.validationParams.comparedValue =
+        formFieldsValue[comparableField.validationParams.compareWith];
+    }
+  };
+
+  const updateFormFieldValues = (target, field) => {
     const valuesClone = { ...formFieldsValue };
     const newFormFieldErrors = { ...formFieldErrors };
 
@@ -72,14 +47,11 @@ const Form = ({ formFields, editMode }) => {
     };
     setFormFieldsValue(valuesClone);
     setFormFieldErrors(newFormFieldErrors);
+  };
 
-    if (field.validationParams && field.validationParams.compareWith) {
-      const comparableField = formFields.find(
-        (formField) => formField.props.name === field.props.name
-      );
-      comparableField.validationParams.comparedValue =
-        formFieldsValue[comparableField.validationParams.compareWith];
-    }
+  const handleFormFieldChange = ({ target }, field) => {
+    updateFormFieldValues(target, field);
+    handleComparableFieldChange(field);
   };
 
   const handleFormFieldValidation = ({ target }, field) => {
@@ -113,36 +85,13 @@ const Form = ({ formFields, editMode }) => {
   };
 
   const getIsFormValid = (newFormFieldErrors) => {
-    const inputsIsValidArr = Object.entries(newFormFieldErrors).map(
-      (field) => field[1].isValid || false
-    );
-    const inputsTouchedArr = Object.entries(newFormFieldErrors).map(
-      (field) => field[1].touched || false
-    );
-
-    let isInputsValid = inputsIsValidArr.reduce(
-      (previousValue, currentValue) => previousValue && currentValue,
-      true
-    );
-    let isInputsTouched = inputsTouchedArr.reduce(
-      (previousValue, currentValue) => previousValue && currentValue,
-      true
-    );
-
+    let validInputs = isInputsValid(newFormFieldErrors);
+    let touchedInputs = isInputsTouched(newFormFieldErrors);
     if (editMode) {
-      const inputsDirtyArray = Object.entries(newFormFieldErrors).map(
-        (field) => field[1].dirty || false
-      );
-
-      let isInputsDirty = inputsDirtyArray.reduce(
-        (previousValue, currentValue) => previousValue || currentValue,
-        true
-      );
-
-      return isInputsTouched && isInputsValid && isInputsDirty;
+      let inputsDirty = isInputsDirty(newFormFieldErrors);
+      return touchedInputs && validInputs && inputsDirty;
     }
-
-    return isInputsTouched && isInputsValid;
+    return touchedInputs && validInputs;
   };
 
   return (
@@ -167,7 +116,11 @@ const Form = ({ formFields, editMode }) => {
         );
       })}
       <div className={formActions}>
-        <button disabled={!isFormValid}>Submit</button>
+        <CommonButton
+          icon={faUser}
+          label={submitButtonText}
+          disabled={!isFormValid}
+        />
       </div>
     </div>
   );

@@ -4,7 +4,8 @@ import Dropdown from "../Dropdown/Dropdown";
 import SelectButton from "./SelectButton/SelectButton";
 
 import styles from "./styles.module.scss";
-const { selectContainer, selectButtonOpened, selectFieldError } = styles;
+const { selectContainer, selectButtonOpened, selectFieldError, selectLabel } =
+  styles;
 
 // returns a comma separated string, by creating a map from the items and access the selected items in the map by the value array
 const getNamesFromIds = (values = [], items = []) => {
@@ -44,6 +45,7 @@ const Select = ({
   value = multiSelect ? [] : "",
   width,
   error,
+  placeholder = "select",
 }) => {
   if (multiSelect && !value.length) {
     value = [];
@@ -51,8 +53,8 @@ const Select = ({
   const nodeRef = useRef(null);
 
   const defaultButtonText = multiSelect
-    ? getNamesFromIds(value, items, label) || label
-    : getNameForSingleSelectedItem(value, items, label);
+    ? getNamesFromIds(value, items, placeholder) || placeholder
+    : getNameForSingleSelectedItem(value, items, placeholder);
 
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectButtonText, setSelectButtonText] = useState(defaultButtonText);
@@ -73,11 +75,11 @@ const Select = ({
 
     if (multiSelect) {
       const changesNames = newSelectedItems.length
-        ? getNamesFromIds(newSelectedItems, items, label).split(",")
+        ? getNamesFromIds(newSelectedItems, items, placeholder).split(",")
         : [];
       const multiSelectButtonValue = changesNames.join(", ");
       setDefaultValue(newSelectedItems);
-      buttonText = multiSelectButtonValue || label;
+      buttonText = multiSelectButtonValue || placeholder;
     } else {
       buttonText = changes.displayName;
       setDefaultValue(changes);
@@ -102,6 +104,7 @@ const Select = ({
 
   return (
     <div className={`${selectContainer} ${className} ${width}`}>
+      <label className={selectLabel}>{label}</label>
       <SelectButton
         node={node}
         setShowDropdown={(showState) => {
