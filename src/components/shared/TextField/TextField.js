@@ -1,22 +1,29 @@
-import React from "react";
+import React, { useRef } from "react";
 import styles from "./styles.module.scss";
 import { v4 as uuidv4 } from "uuid";
-import SlideUpDown from "../../../animations/SlideUpDown/SlideUpDown";
+import FadeUpDown from "../../../animations/FadeUpDown/FadeUpDown";
 
-const { textField, textFieldLabel, textFieldInput, textFieldError } = styles;
+const { textField, textFieldLabel, textFieldInput, textFieldError, hasError } =
+  styles;
 
 const TextField = (props) => {
   const {
     label = "text field",
     id = uuidv4(),
     className = "",
-    hasError = false,
+    error = false,
     multiline = false,
     width,
   } = props;
 
+  const nodeRef = useRef(null);
+
   return (
-    <div className={`${textField} ${className} ${width} `}>
+    <div
+      className={`${textField} ${className} ${width} ${
+        !!error ? hasError : ""
+      } `}
+    >
       <label className={textFieldLabel} htmlFor={id}>
         {label}
       </label>
@@ -25,9 +32,11 @@ const TextField = (props) => {
       ) : (
         <input className={textFieldInput} id={id} type="text" {...props} />
       )}
-      <SlideUpDown showsIn={hasError}>
-        <span className={textFieldError}>error</span>
-      </SlideUpDown>
+      <FadeUpDown nodeRef={nodeRef} showsIn={!!error}>
+        <span ref={nodeRef} className={textFieldError}>
+          {error}
+        </span>
+      </FadeUpDown>
     </div>
   );
 };

@@ -1,9 +1,10 @@
 import React, { useRef, useState } from "react";
+import FadeUpDown from "../../../animations/FadeUpDown/FadeUpDown";
 import Dropdown from "../Dropdown/Dropdown";
 import SelectButton from "./SelectButton/SelectButton";
 
 import styles from "./styles.module.scss";
-const { selectContainer, selectButtonOpened } = styles;
+const { selectContainer, selectButtonOpened, selectFieldError } = styles;
 
 // returns a comma separated string, by creating a map from the items and access the selected items in the map by the value array
 const getNamesFromIds = (values = [], items = []) => {
@@ -35,16 +36,19 @@ const createSelectedItemsMap = (value) => {
 
 const Select = ({
   items,
-  onSelectionChange = () => {},
+  onChange = () => {},
+  onBlur = () => {},
   label = "select label",
   className,
   multiSelect,
   value = multiSelect ? [] : "",
   width,
+  error,
 }) => {
   if (multiSelect && !value.length) {
     value = [];
   }
+  const nodeRef = useRef(null);
 
   const defaultButtonText = multiSelect
     ? getNamesFromIds(value, items, label) || label
@@ -53,6 +57,7 @@ const Select = ({
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectButtonText, setSelectButtonText] = useState(defaultButtonText);
   const [defaultValue, setDefaultValue] = useState(value);
+  const [isDropdownTouched, setIsDropdownTouched] = useState(false);
 
   const node = useRef();
 
@@ -75,10 +80,15 @@ const Select = ({
       buttonText = multiSelectButtonValue || label;
     } else {
       buttonText = changes.displayName;
+      setDefaultValue(changes);
     }
 
     setSelectButtonText(buttonText);
-    onSelectionChange(multiSelect ? newSelectedItems : changes);
+    const result = multiSelect
+      ? { target: { value: newSelectedItems } }
+      : { target: { value: changes } };
+    onChange(result);
+    onBlur(result);
   };
 
   const handleMultiSelectChange = ({ target }, { id }) => {
@@ -94,7 +104,10 @@ const Select = ({
     <div className={`${selectContainer} ${className} ${width}`}>
       <SelectButton
         node={node}
-        setShowDropdown={setShowDropdown}
+        setShowDropdown={(showState) => {
+          setShowDropdown(showState);
+          setIsDropdownTouched(true);
+        }}
         showDropdown={showDropdown}
         selectButtonOpened={selectButtonOpened}
         selectButtonValue={selectButtonText}
@@ -103,15 +116,25 @@ const Select = ({
         parentNode={node}
         items={items}
         showDropdown={showDropdown}
-        onDropdownHide={() => setShowDropdown(false)}
+        onDropdownHide={() => {
+          setShowDropdown(false);
+        }}
         onDropdownShow={() => setShowDropdown(true)}
         onSelectionChange={
           multiSelect ? handleMultiSelectChange : handleSelectionChange
+        }
+        onBlur={() =>
+          isDropdownTouched && onBlur({ target: { value: defaultValue } })
         }
         multiSelect={multiSelect}
         selectedItemsMap={selectedItemsMap}
         value={defaultValue}
       />
+      <FadeUpDown nodeRef={nodeRef} showsIn={!!error}>
+        <span ref={nodeRef} className={selectFieldError}>
+          {error}
+        </span>
+      </FadeUpDown>
     </div>
   );
 };

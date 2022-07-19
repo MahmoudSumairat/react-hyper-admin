@@ -14,13 +14,17 @@ const Checkbox = (props) => {
     onChange = () => {},
     className = "",
     width,
+    checked = false,
   } = props;
 
   return (
     <div className={`${checkboxContainer} ${className} ${width}`}>
       <input
+        checked={checked}
         {...props}
-        onChange={onChange}
+        onChange={(e) =>
+          onChange({ ...e, target: { ...e, value: e.target.checked } })
+        }
         id={id}
         className={checkboxInput}
         type="checkbox"

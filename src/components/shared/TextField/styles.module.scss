@@ -14,7 +14,7 @@
   color: $primary;
   transition: all 0.1s ease-in-out;
   position: relative;
-  z-index: 9;
+  z-index: 99;
   resize: none;
 
   &::placeholder {
@@ -43,4 +43,11 @@
   left: 10px;
   bottom: -25px;
   font-size: 14px;
+}
+
+.hasError {
+  input {
+    border-color: $danger !important;
+    background-color: rgba($danger, 0.1) !important;
+  }
 }

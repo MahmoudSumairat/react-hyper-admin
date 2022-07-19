@@ -1,45 +1,59 @@
 import React from "react";
-import Form from "../../components/shared/form/Form";
+import Form from "../../components/shared/Form/Form";
 import styles from "./styles.module.scss";
 
 const { home } = styles;
 
 const Home = () => {
-  const dummyItems = [
-    {
-      displayName: "test 1",
-      id: 1,
-    },
-    {
-      displayName: "test 2",
-      id: 2,
-    },
-    {
-      displayName: "test 3",
-      id: 3,
-    },
-    {
-      displayName: "test 4",
-      id: 4,
-    },
-  ];
-
   return (
     <div className={home}>
       <Form
         formFields={[
-          { component: "dateInput", props: { max: "20" }, width: "quarter" },
           {
-            component: "checkbox",
-            props: { max: "20", label: "isTrusted" },
-            width: "quarter",
+            component: "textInput",
+            props: { name: "email", type: "email", value: "", label: "Email" },
+            width: "full",
+            validations: ["email"],
+            validationParams: {
+              minLengthParam: 8,
+            },
           },
-          { component: "textInput", props: { max: "20" }, width: "half" },
           {
-            component: "textarea",
-            width: "threeQuarters",
+            component: "textInput",
+            props: {
+              name: "password",
+              type: "password",
+              value: "",
+              label: "Password",
+            },
+            width: "full",
+            validations: ["minLength"],
+            validationParams: {
+              minLengthParam: 8,
+            },
           },
-          { component: "numberInput", props: { max: "20" }, width: "quarter" },
+          {
+            component: "select",
+            props: {
+              name: "gender",
+              value: "",
+              items: [
+                { displayName: "male", id: 1 },
+                { displayName: "female", id: 2 },
+              ],
+            },
+            width: "full",
+            validations: ["required"],
+          },
+          {
+            component: "dateInput",
+            props: {
+              name: "startDate",
+              value: "",
+            },
+            width: "full",
+            validations: ["greaterThanToday"],
+          },
         ]}
       />
     </div>

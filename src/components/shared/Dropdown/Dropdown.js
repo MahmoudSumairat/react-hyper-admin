@@ -20,6 +20,7 @@ const Dropdown = ({
   parentNode = null,
   multiSelect,
   selectedItemsMap = {},
+  onBlur = () => {},
 }) => {
   const node = useRef();
 
@@ -31,6 +32,7 @@ const Dropdown = ({
       (!parentNode || !parentNodeCurrent || !parentNodeCurrent.contains(target))
     ) {
       onDropdownHide();
+      onBlur();
     }
   };
 
