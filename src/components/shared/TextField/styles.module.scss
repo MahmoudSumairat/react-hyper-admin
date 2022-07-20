@@ -10,7 +10,7 @@
   border: 1px solid $light-grey;
   background-color: $light-grey;
   border-radius: 11px;
-  padding: 13px;
+  padding: 13px 20px;
   color: $primary;
   transition: all 0.1s ease-in-out;
   position: relative;
@@ -28,26 +28,5 @@
     box-shadow: 0;
     border-color: $primary;
     background-color: darken($light-grey, 1);
-  }
-}
-
-.textFieldLabel {
-  margin-bottom: 10px;
-  text-transform: capitalize;
-  color: $primary-dark;
-}
-
-.textFieldError {
-  color: $danger;
-  position: absolute;
-  left: 10px;
-  bottom: -25px;
-  font-size: 14px;
-}
-
-.hasError {
-  input {
-    border-color: $danger !important;
-    background-color: rgba($danger, 0.1) !important;
   }
 }

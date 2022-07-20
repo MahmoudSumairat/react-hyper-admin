@@ -1,0 +1,32 @@
+@import "./variables.scss";
+
+.hasError {
+  input,
+  button {
+    border-color: $danger !important;
+    background-color: rgba($danger, 0.1) !important;
+  }
+}
+
+.fieldError {
+  color: $danger;
+  position: absolute;
+  left: 10px;
+  bottom: -25px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.inputLabel {
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  color: $primary-dark;
+}
+
+.formInput {
+  transition: all 0.1s ease-in-out;
+  border: 1px solid $light-grey;
+  background-color: $light-grey;
+  border-radius: 11px;
+  color: $primary;
+}

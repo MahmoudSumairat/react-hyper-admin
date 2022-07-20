@@ -9,24 +9,42 @@ const {
   buttonPrimary,
   buttonWhite,
   buttonGrey,
+  buttonDanger,
+  buttonWarning,
+  buttonTextPrimary,
+  buttonTextGrey,
+  buttonTextDanger,
+  buttonTextWarning,
+  buttonTextDark,
 } = styles;
 
 const buttonColors = {
   primary: buttonPrimary,
   white: buttonWhite,
   grey: buttonGrey,
+  danger: buttonDanger,
+  warning: buttonWarning,
+  textPrimary: buttonTextPrimary,
+  textGrey: buttonTextGrey,
+  textDanger: buttonTextDanger,
+  textWarning: buttonTextWarning,
+  textDark: buttonTextDark,
 };
 
 const CommonButton = ({
   label,
-  onClick,
+  onClick = () => {},
   className,
   icon,
   color = "primary",
   ...rest
 }) => {
   return (
-    <button className={`${button} ${buttonColors[color]} `} {...rest}>
+    <button
+      onClick={onClick}
+      className={`${button} ${buttonColors[color]} `}
+      {...rest}
+    >
       {icon && <FontAwesomeIcon className={buttonIcon} icon={icon} />}
       <span className={icon ? buttonText : ""}>{label}</span>
     </button>

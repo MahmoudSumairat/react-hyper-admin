@@ -2,38 +2,15 @@ import React, { useRef, useState } from "react";
 import FadeUpDown from "../../../animations/FadeUpDown/FadeUpDown";
 import Dropdown from "../Dropdown/Dropdown";
 import SelectButton from "./SelectButton/SelectButton";
-
+import formStyles from "../../../styles/form.module.scss";
 import styles from "./styles.module.scss";
-const { selectContainer, selectButtonOpened, selectFieldError, selectLabel } =
-  styles;
-
-// returns a comma separated string, by creating a map from the items and access the selected items in the map by the value array
-const getNamesFromIds = (values = [], items = []) => {
-  const itemsObj = {};
-  const selectedValues = [];
-  items.forEach((item) => {
-    itemsObj[item.id] = item.displayName;
-  });
-  values.forEach((value) => {
-    selectedValues.push(itemsObj[value]);
-  });
-  return selectedValues.join(", ");
-};
-
-// returns either the displayName of the selected item or the default select label
-const getNameForSingleSelectedItem = (value, items, label) => {
-  const selectedItem = items.find((item) => item.id === value);
-  return selectedItem ? selectedItem.displayName : label;
-};
-
-// returns an object of the selectedItems with a key of the id and a value of the checked flag, to easy access and avoid nested loops
-const createSelectedItemsMap = (value) => {
-  const selectedItemsMap = {};
-  value.forEach((item) => {
-    selectedItemsMap[item] = true;
-  });
-  return selectedItemsMap;
-};
+import {
+  getNameForSingleSelectedItem,
+  getNamesFromIds,
+  createSelectedItemsMap,
+} from "./selectHelpers";
+const { selectContainer, selectButtonOpened } = styles;
+const { inputLabel, hasError, fieldError } = formStyles;
 
 const Select = ({
   items,
@@ -103,8 +80,12 @@ const Select = ({
   };
 
   return (
-    <div className={`${selectContainer} ${className} ${width}`}>
-      <label className={selectLabel}>{label}</label>
+    <div
+      className={`${selectContainer} ${className} ${width} ${
+        !!error ? hasError : ""
+      }`}
+    >
+      <label className={inputLabel}>{label}</label>
       <SelectButton
         node={node}
         setShowDropdown={(showState) => {
@@ -134,7 +115,7 @@ const Select = ({
         value={defaultValue}
       />
       <FadeUpDown nodeRef={nodeRef} showsIn={!!error}>
-        <span ref={nodeRef} className={selectFieldError}>
+        <span ref={nodeRef} className={fieldError}>
           {error}
         </span>
       </FadeUpDown>

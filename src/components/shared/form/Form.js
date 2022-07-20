@@ -11,11 +11,16 @@ import {
 } from "./formHelpers";
 import formValidations from "../../../common/formValidations";
 import CommonButton from "../Button/Button";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const { form, formActions } = styles;
 
-const Form = ({ formFields, editMode, submitButtonText = "submit" }) => {
+const Form = ({
+  formFields,
+  editMode,
+  submitButton = { text: "submit", color: "primary" },
+  secondaryButton,
+  onSubmit = () => {},
+}) => {
   const [formFieldsValue, setFormFieldsValue] = useState(
     getFormFieldsValues(formFields)
   );
@@ -59,7 +64,7 @@ const Form = ({ formFields, editMode, submitButtonText = "submit" }) => {
     field.validations.every((validation) => {
       const { isValid, message } = formValidations[validation](
         target.value,
-        field.props.name,
+        field.props.label,
         field.validationParams
       );
 
@@ -117,10 +122,17 @@ const Form = ({ formFields, editMode, submitButtonText = "submit" }) => {
       })}
       <div className={formActions}>
         <CommonButton
-          icon={faUser}
-          label={submitButtonText}
+          label={submitButton.text}
           disabled={!isFormValid}
+          color={submitButton.color}
+          onClick={() => onSubmit(formFieldsValue)}
         />
+        {secondaryButton && (
+          <CommonButton
+            label={secondaryButton.text}
+            color={secondaryButton.color}
+          />
+        )}
       </div>
     </div>
   );

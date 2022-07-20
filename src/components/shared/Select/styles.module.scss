@@ -39,10 +39,18 @@
   left: 10px;
   bottom: -25px;
   font-size: 14px;
+  text-transform: capitalize;
 }
 
 .selectLabel {
   margin-bottom: 10px;
   text-transform: capitalize;
   color: $primary-dark;
+}
+
+.hasError {
+  button {
+    border-color: $danger !important;
+    background-color: rgba($danger, 0.1) !important;
+  }
 }

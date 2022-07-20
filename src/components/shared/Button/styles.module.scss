@@ -32,6 +32,37 @@
   color: $dark;
 }
 
+.buttonDanger {
+  background-color: $danger;
+  color: $white;
+}
+
+.buttonWarning {
+  background-color: $warning;
+  color: $dark;
+}
+
+.buttonTextPrimary {
+  background-color: $white;
+  color: $primary;
+}
+.buttonTextGrey {
+  background-color: $white;
+  color: $grey;
+}
+.buttonTextDanger {
+  background-color: $white;
+  color: $danger;
+}
+.buttonTextWarning {
+  background-color: $white;
+  color: $warning;
+}
+.buttonTextDark {
+  background-color: $white;
+  color: $dark;
+}
+
 .buttonText {
   margin-left: 10px;
 }

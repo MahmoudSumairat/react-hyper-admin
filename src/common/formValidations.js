@@ -1,5 +1,5 @@
 const formValidations = {
-  required: (value, name) => {
+  required: (value, name = "") => {
     return { isValid: !!value, message: `${name} is required` };
   },
   email: (value, name) => {
@@ -14,7 +14,7 @@ const formValidations = {
       message: `You have entered an invalid email, please try again`,
     };
   },
-  compareValue: (value, name, validationParams) => {
+  compareValue: (value, name = "", validationParams) => {
     const { comparedValue } = validationParams;
     if (!value) {
       return { isValid: false, message: `${name} is required` };
@@ -27,7 +27,7 @@ const formValidations = {
       message: "Passwords don't match",
     };
   },
-  minLength: (value, name, validationParams) => {
+  minLength: (value, name = "", validationParams) => {
     const { minLengthParam } = validationParams;
 
     if (!value) {
@@ -38,7 +38,7 @@ const formValidations = {
       message: `${name} should be more than or equal ${minLengthParam} characters`,
     };
   },
-  maxLength: (value, name, validationParams) => {
+  maxLength: (value, name = "", validationParams) => {
     const { maxLengthParam } = validationParams;
     if (!value) {
       return { isValid: false, message: `${name} is required` };
@@ -48,7 +48,7 @@ const formValidations = {
       message: `${name} should be less than or equal ${maxLengthParam} characters`,
     };
   },
-  greaterThanToday: (value, name) => {
+  greaterThanToday: (value, name = "") => {
     if (!value) {
       return { isValid: false, message: `${name} is required` };
     }

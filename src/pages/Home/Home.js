@@ -8,6 +8,9 @@ const Home = () => {
   return (
     <div className={home}>
       <Form
+        onSubmit={(data) => {
+          console.log("this is the form data", data);
+        }}
         formFields={[
           {
             component: "textInput",
@@ -37,6 +40,7 @@ const Home = () => {
             props: {
               name: "gender",
               value: "",
+              label: "gender",
               items: [
                 { displayName: "male", id: 1 },
                 { displayName: "female", id: 2 },
