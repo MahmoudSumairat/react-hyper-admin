@@ -1,10 +1,8 @@
 import React from "react";
-import styles from "./styles.module.scss";
-
-const { users } = styles;
+import Box from "../../components/shared/Box/Box";
 
 const Users = () => {
-  return <div className={users}>this is the users page</div>;
+  return <Box>this is the users page</Box>;
 };
 
 export default Users;
