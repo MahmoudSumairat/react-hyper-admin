@@ -1,0 +1,24 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+.loginPage {
+  @include flex-center();
+  height: 100vh;
+  flex-direction: column;
+  background-image: linear-gradient(
+    160deg,
+    $primary-light 0%,
+    $primary 60%,
+    $light 60%,
+    $white 100%
+  );
+}
+
+.loginWelcome,
+.loginDescription {
+  text-align: center;
+  color: $primary-dark;
+}
+
+.loginBox {
+  width: 30%;
+}

@@ -2,10 +2,10 @@ import React from "react";
 import { Route, Routes } from "react-router";
 import routes from "./routesList";
 
-const PageRoutes = () => {
+const PageRoutes = ({ isAuthenticated }) => {
   return (
     <Routes>
-      {routes.map((route) => {
+      {routes(isAuthenticated).map((route) => {
         return (
           <Route
             key={route.name}

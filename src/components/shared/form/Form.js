@@ -12,7 +12,7 @@ import {
 import formValidations from "../../../common/formValidations";
 import CommonButton from "../Button/Button";
 
-const { form, formActions } = styles;
+const { form, formActions, formSubmitButton } = styles;
 
 const Form = ({
   formFields,
@@ -126,6 +126,7 @@ const Form = ({
           disabled={!isFormValid}
           color={submitButton.color}
           onClick={() => onSubmit(formFieldsValue)}
+          className={`${formSubmitButton} ${submitButton.className || ""}`}
         />
         {secondaryButton && (
           <CommonButton
