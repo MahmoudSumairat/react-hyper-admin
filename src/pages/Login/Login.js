@@ -1,11 +1,14 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import Logo from "../../components/Logo/Logo";
 import Box from "../../components/shared/Box/Box";
 import Form from "../../components/shared/Form/Form";
+import { loginAction } from "../../redux/actionCreators/auth";
 import styles from "./styles.module.scss";
 const { loginPage, loginWelcome, loginDescription, loginBox } = styles;
 
-const Login = ({ setAuthToken }) => {
+const Login = () => {
+  const dispatch = useDispatch();
   const loginFormFields = [
     {
       component: "email",
@@ -32,7 +35,8 @@ const Login = ({ setAuthToken }) => {
 
   const handleFormSubmit = (data) => {
     //Do auth stuff
-    setAuthToken(JSON.stringify(data));
+    localStorage.setItem("authToken", JSON.stringify(data));
+    dispatch(loginAction(JSON.stringify(data)));
   };
 
   return (

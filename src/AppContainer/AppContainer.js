@@ -1,41 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import PageRoutes from "../common/routes";
 import Header from "../components/layout/Header/Header";
 import Sidenav from "../components/layout/Sidenav/Sidenav";
-import Login from "../pages/Login/Login";
+import { loginAction } from "../redux/actionCreators/auth";
 
 import styles from "./styles.module.scss";
 const { appContainer, mainContent } = styles;
 
 const AppContainer = () => {
-  const [authToken, setAuthToken] = useState(localStorage.getItem("authToken"));
   const navigate = useNavigate();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    const authToken = localStorage.getItem("authToken");
     if (!authToken) {
       navigate("/", { replace: true });
+    } else {
+      dispatch(loginAction(authToken));
     }
-    /* eslint-disable-next-line */
-  }, [authToken]);
 
-  const handleSetAuthToken = (token) => {
-    localStorage.setItem("authToken", token);
-    setAuthToken(token);
-  };
+    /* eslint-disable-next-line */
+  }, [isAuthenticated]);
 
   return (
     <div className="App">
-      {authToken ? (
+      {isAuthenticated ? (
         <div className={appContainer}>
           <Sidenav />
           <Header />
           <main className={mainContent}>
-            <PageRoutes isAuthenticated={authToken} />
+            <PageRoutes />
           </main>
         </div>
       ) : (
-        <PageRoutes isAuthenticated={authToken} />
+        <PageRoutes />
       )}
     </div>
   );

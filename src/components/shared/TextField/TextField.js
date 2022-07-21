@@ -33,6 +33,7 @@ const TextField = (props) => {
         <textarea className={textFieldInput} id={id} type="text" {...props} />
       ) : (
         <input
+          autoComplete="off"
           className={`${formInput} ${textFieldInput}`}
           id={id}
           type="text"
