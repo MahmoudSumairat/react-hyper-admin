@@ -1,7 +1,7 @@
 import React from "react";
 import Form from "../../components/shared/Form/Form";
 import styles from "./styles.module.scss";
-import Box from "../../components/shared/Box/Box.js";
+import Box from "../../components/shared/Box/Box";
 
 const { home } = styles;
 

@@ -16,7 +16,7 @@ const Select = ({
   items,
   onChange = () => {},
   onBlur = () => {},
-  label = "select label",
+  label,
   className,
   multiSelect,
   value = multiSelect ? [] : "",
@@ -85,7 +85,7 @@ const Select = ({
         !!error ? hasError : ""
       }`}
     >
-      <label className={inputLabel}>{label}</label>
+      {label && <label className={inputLabel}>{label}</label>}
       <SelectButton
         node={node}
         setShowDropdown={(showState) => {

@@ -8,10 +8,6 @@
   transition: all 0.1s ease-in-out;
   cursor: pointer;
 
-  &:hover {
-    background-color: darken($primary, 5);
-  }
-
   &:disabled {
     opacity: 0.5;
     cursor: default;
@@ -21,25 +17,49 @@
 .buttonPrimary {
   background-color: $primary;
   color: $white;
+  &:hover {
+    background-color: darken($primary, 5);
+  }
 }
 .buttonWhite {
   background-color: $light-grey;
   color: $dark;
+  &:hover {
+    background-color: darken($light-grey, 3);
+  }
 }
 
 .buttonGrey {
   background-color: $grey;
   color: $dark;
+  &:hover {
+    background-color: darken($grey, 3);
+  }
 }
 
 .buttonDanger {
   background-color: $danger;
   color: $white;
+  &:hover {
+    background-color: darken($danger, 5);
+  }
 }
 
 .buttonWarning {
   background-color: $warning;
   color: $dark;
+  &:hover {
+    background-color: darken($warning, 5);
+  }
+}
+.buttonTextPrimary,
+.buttonTextGrey,
+.buttonTextDanger,
+.buttonTextWarning,
+.buttonTextDark {
+  &:hover {
+    background-color: darken($white, 6);
+  }
 }
 
 .buttonTextPrimary {

@@ -42,11 +42,11 @@ const CommonButton = ({
   return (
     <button
       onClick={onClick}
-      className={`${button} ${buttonColors[color]} `}
+      className={`${button} ${buttonColors[color]} ${className} `}
       {...rest}
     >
       {icon && <FontAwesomeIcon className={buttonIcon} icon={icon} />}
-      <span className={icon ? buttonText : ""}>{label}</span>
+      {label && <span className={icon ? buttonText : ""}>{label}</span>}
     </button>
   );
 };
