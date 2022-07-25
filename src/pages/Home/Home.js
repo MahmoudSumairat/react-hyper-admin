@@ -2,13 +2,16 @@ import React from "react";
 import Form from "../../components/shared/Form/Form";
 import styles from "./styles.module.scss";
 import Box from "../../components/shared/Box/Box";
+import useModal from "../../hooks/useModal";
+import CommonButton from "../../components/shared/Button/Button";
 
 const { home } = styles;
 
 const Home = () => {
+  const { showModal, hideModal } = useModal();
   return (
     <Box className={home}>
-      <Form
+      {/* <Form
         onSubmit={(data) => {
           console.log("this is the form data", data);
         }}
@@ -60,6 +63,16 @@ const Home = () => {
             validations: ["greaterThanToday"],
           },
         ]}
+      /> */}
+      <CommonButton
+        onClick={() =>
+          showModal({
+            title: "This is a test modal",
+            message: "when you click on this modal everything shows up",
+            type: "confirmation",
+          })
+        }
+        label="Show Modal"
       />
     </Box>
   );

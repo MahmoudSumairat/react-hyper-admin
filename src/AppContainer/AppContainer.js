@@ -5,6 +5,7 @@ import PageRoutes from "../common/routes";
 import Header from "../components/layout/Header/Header";
 import Sidenav from "../components/layout/Sidenav/Sidenav";
 import { loginAction } from "../redux/actionCreators/auth";
+import Modal from "../components/shared/Modal/Modal";
 
 import styles from "./styles.module.scss";
 const { appContainer, mainContent } = styles;
@@ -27,6 +28,7 @@ const AppContainer = () => {
 
   return (
     <div className="App">
+      <Modal />
       {isAuthenticated ? (
         <div className={appContainer}>
           <Sidenav />
