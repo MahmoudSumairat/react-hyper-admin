@@ -1,9 +1,9 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styles from "./styles.module.scss";
-import ScaleUpDown from "../../../animations/ScaleUpDown/ScaleUpDown";
 import useModal from "../../../hooks/useModal";
 import CommonButton from "../Button/Button";
+import Animate from "../Animate/Animate";
 const {
   modal,
   modalOverlay,
@@ -22,7 +22,7 @@ const Modal = () => {
   return (
     <>
       {showModal && <div className={modalOverlay}></div>}
-      <ScaleUpDown showsIn={showModal}>
+      <Animate animationType="scaleUpDown" showsIn={showModal}>
         <div className={modal}>
           <div className={modalHeader}> {title} </div>
           <div className={modalBody}> {message} </div>
@@ -42,7 +42,7 @@ const Modal = () => {
             )}
           </div>
         </div>
-      </ScaleUpDown>
+      </Animate>
     </>
   );
 };
