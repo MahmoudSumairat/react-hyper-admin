@@ -8,7 +8,7 @@ import CommonButton from "../../components/shared/Button/Button";
 const { home } = styles;
 
 const Home = () => {
-  const { showModal, hideModal } = useModal();
+  const { showModal } = useModal();
   return (
     <Box className={home}>
       {/* <Form
