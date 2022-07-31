@@ -1,5 +1,4 @@
 import React from "react";
-import Box from "../../components/shared/Box/Box";
 import Table from "../../components/shared/Table/Table";
 
 const Users = () => {

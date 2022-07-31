@@ -1,7 +1,7 @@
 @import "../../../styles/variables.scss";
 
 .button {
-  all: unset;
+  border: 0;
   padding: 10px 20px;
   border-radius: 10px;
   margin: 10px;
@@ -11,6 +11,13 @@
   &:disabled {
     opacity: 0.5;
     cursor: default;
+  }
+
+  &:focus,
+  &:active,
+  &:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
   }
 }
 
@@ -57,29 +64,25 @@
 .buttonTextDanger,
 .buttonTextWarning,
 .buttonTextDark {
+  background-color: $light-grey;
   &:hover {
-    background-color: darken($white, 6);
+    background-color: darken($light-grey, 6);
   }
 }
 
 .buttonTextPrimary {
-  background-color: $white;
   color: $primary;
 }
 .buttonTextGrey {
-  background-color: $white;
   color: $grey;
 }
 .buttonTextDanger {
-  background-color: $white;
   color: $danger;
 }
 .buttonTextWarning {
-  background-color: $white;
   color: $warning;
 }
 .buttonTextDark {
-  background-color: $white;
   color: $dark;
 }
 
