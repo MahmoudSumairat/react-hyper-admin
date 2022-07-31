@@ -1,11 +1,14 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { Route, Routes } from "react-router";
 import routes from "./routesList";
 
 const PageRoutes = () => {
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
   return (
     <Routes>
-      {routes.map((route) => {
+      {routes(isAuthenticated).map((route) => {
         return (
           <Route
             key={route.name}

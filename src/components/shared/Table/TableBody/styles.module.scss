@@ -1,0 +1,21 @@
+@import "../../../../styles/variables.scss";
+
+.tableCell {
+  padding: 10px;
+
+  &.oddCell {
+    background-color: rgba($primary-light, 0.2);
+  }
+
+  &:first-of-type {
+    padding-left: 20px;
+  }
+
+  &:last-of-type {
+    padding-right: 20px;
+  }
+}
+
+.tableRow {
+  cursor: pointer;
+}

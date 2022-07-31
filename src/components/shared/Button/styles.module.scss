@@ -1,65 +1,88 @@
 @import "../../../styles/variables.scss";
 
 .button {
-  all: unset;
+  border: 0;
   padding: 10px 20px;
   border-radius: 10px;
   margin: 10px;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
 
-  &:hover {
-    background-color: darken($primary, 5);
-  }
-
   &:disabled {
     opacity: 0.5;
     cursor: default;
+  }
+
+  &:focus,
+  &:active,
+  &:focus-visible {
+    outline: none !important;
+    box-shadow: none !important;
   }
 }
 
 .buttonPrimary {
   background-color: $primary;
   color: $white;
+  &:hover {
+    background-color: darken($primary, 5);
+  }
 }
 .buttonWhite {
   background-color: $light-grey;
   color: $dark;
+  &:hover {
+    background-color: darken($light-grey, 3);
+  }
 }
 
 .buttonGrey {
   background-color: $grey;
   color: $dark;
+  &:hover {
+    background-color: darken($grey, 3);
+  }
 }
 
 .buttonDanger {
   background-color: $danger;
   color: $white;
+  &:hover {
+    background-color: darken($danger, 5);
+  }
 }
 
 .buttonWarning {
   background-color: $warning;
   color: $dark;
+  &:hover {
+    background-color: darken($warning, 5);
+  }
+}
+.buttonTextPrimary,
+.buttonTextGrey,
+.buttonTextDanger,
+.buttonTextWarning,
+.buttonTextDark {
+  background-color: $light-grey;
+  &:hover {
+    background-color: darken($light-grey, 6);
+  }
 }
 
 .buttonTextPrimary {
-  background-color: $white;
   color: $primary;
 }
 .buttonTextGrey {
-  background-color: $white;
   color: $grey;
 }
 .buttonTextDanger {
-  background-color: $white;
   color: $danger;
 }
 .buttonTextWarning {
-  background-color: $white;
   color: $warning;
 }
 .buttonTextDark {
-  background-color: $white;
   color: $dark;
 }
 
