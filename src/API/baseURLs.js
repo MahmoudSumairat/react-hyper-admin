@@ -1,3 +1,11 @@
-const USERS = "/users";
-
-export { USERS };
+export const EVENTS = "/events";
+export const EVENT = "/event";
+export const LOOKUP = "/lookup";
+export const CATEGORIES = "/categories";
+export const SUB_CATEGORIES = "/subcategories";
+export const TYPES = "/types";
+export const LOCATIONS = "/locations";
+export const LOCATION = "/location";
+export const AUTHENTICATION = "/authentication";
+export const USERS = "/users";
+export const AUTHENTICATE = "/authenticate";

@@ -1,8 +1,19 @@
 import { USERS } from "../baseURLs";
 
+const addUserRoute = () => `${USERS}`;
+
 const getUsersRoute = () => `${USERS}`;
-const createUserRoute = () => `${USERS}/create-user`;
-const deleteUserRoute = () => `${USERS}/delete-user`;
+
 const getUserDetailsRoute = (userId) => `${USERS}/${userId}`;
 
-export { getUsersRoute, createUserRoute, deleteUserRoute, getUserDetailsRoute };
+const updateUserRoute = (userId) => `${USERS}/${userId}`;
+
+const deleteUserRoute = (userId) => `${USERS}/${userId}`;
+
+export {
+  addUserRoute,
+  getUsersRoute,
+  getUserDetailsRoute,
+  updateUserRoute,
+  deleteUserRoute,
+};

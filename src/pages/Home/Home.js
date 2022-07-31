@@ -1,5 +1,4 @@
 import React from "react";
-import Form from "../../components/shared/Form/Form";
 import styles from "./styles.module.scss";
 import Box from "../../components/shared/Box/Box";
 import useModal from "../../hooks/useModal";
@@ -9,6 +8,7 @@ const { home } = styles;
 
 const Home = () => {
   const { showModal } = useModal();
+
   return (
     <Box className={home}>
       {/* <Form

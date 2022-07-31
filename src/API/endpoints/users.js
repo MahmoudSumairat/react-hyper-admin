@@ -1,30 +1,24 @@
 //NOTE : all these endpoint are just to build the structure, it will be replaced with the actual endpoints
 
-import http from "../../common/http";
+import http from "../../http/http";
 import {
-  createUserRoute,
-  deleteUserRoute,
+  addUserRoute,
   getUsersRoute,
   getUserDetailsRoute,
+  updateUserRoute,
+  deleteUserRoute,
 } from "../routes/users";
+
+const addUser = (userData) => {
+  return http
+    .post(addUserRoute(), userData)
+    .then(() => {})
+    .catch(() => {});
+};
 
 const getUsers = () => {
   return http
     .get(getUsersRoute())
-    .then(() => {})
-    .catch(() => {});
-};
-
-const createUser = (userData) => {
-  return http
-    .post(createUserRoute(), userData)
-    .then(() => {})
-    .catch(() => {});
-};
-
-const deleteUser = (userId) => {
-  return http
-    .delete(deleteUserRoute(), { id: userId })
     .then(() => {})
     .catch(() => {});
 };
@@ -36,4 +30,23 @@ const getUserDetails = (userId) => {
     .catch(() => {});
 };
 
-export { getUsers, createUser, deleteUser, getUserDetails };
+const updateUser = (userId, userData) => {
+  return http.put(updateUserRoute(userId), userData);
+};
+
+const deleteUser = (userId) => {
+  return http
+    .delete(deleteUserRoute(), { id: userId })
+    .then(() => {})
+    .catch(() => {});
+};
+
+const usersEndpoints = {
+  getUsers,
+  addUser,
+  deleteUser,
+  getUserDetails,
+  updateUser,
+};
+
+export default usersEndpoints;
