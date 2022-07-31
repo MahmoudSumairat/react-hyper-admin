@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import FadeUpDown from "../../../animations/FadeUpDown/FadeUpDown";
+import Animate from "../Animate/Animate";
 import DropdownList from "./DropdownList/DropdownList";
 import styles from "./styles.module.scss";
 
@@ -41,11 +41,11 @@ const Dropdown = ({
   });
 
   return (
-    <FadeUpDown
+    <Animate
       onEnter={onDropdownShow}
       onExit={onDropdownHide}
-      nodeRef={node}
       showsIn={showDropdown}
+      animationType="fadeUpDown"
     >
       <ul ref={node} className={`${styles.sharedDropdown} ${className} `}>
         <DropdownList
@@ -57,7 +57,7 @@ const Dropdown = ({
           onDropdownHide={onDropdownHide}
         />
       </ul>
-    </FadeUpDown>
+    </Animate>
   );
 };
 
