@@ -13,7 +13,6 @@ const Home = () => {
     <Box className={home}>
       {/* <Form
         onSubmit={(data) => {
-          console.log("this is the form data", data);
         }}
         formFields={[
           {

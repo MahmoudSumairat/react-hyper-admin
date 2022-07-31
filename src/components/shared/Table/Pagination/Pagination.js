@@ -49,7 +49,6 @@ const TablePagination = ({
         <Select
           value={getSelectedNumOfRowsOption(pageSize, numOfRowsOptions)}
           onChange={(e) => {
-            console.log(e);
             setPageSize(Number(e.target.value.displayName));
           }}
           items={numOfRowsOptions}

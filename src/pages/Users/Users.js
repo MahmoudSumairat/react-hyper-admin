@@ -28,7 +28,6 @@ const Users = () => {
       //     <button value={cell.row.values.name}>{cell.row.values.name}</button>
       //   );
       // },
-      onClick: (cell) => console.log(cell),
     },
   ];
 
