@@ -1,10 +1,59 @@
 import React from "react";
-import styles from "./styles.module.scss";
-
-const { users } = styles;
+import Table from "../../components/shared/Table/Table";
 
 const Users = () => {
-  return <div className={users}>this is the users page</div>;
+  const columns = [
+    {
+      Header: "First Name",
+      accessor: "firstName",
+    },
+    {
+      Header: "Last Name",
+      accessor: "lastName",
+    },
+    {
+      Header: "Age",
+      accessor: "age",
+    },
+    {
+      Header: "Salary",
+      accessor: "salary",
+    },
+    {
+      Header: "Actions",
+      accessor: "sss",
+      type: "delete",
+      // Cell: ({ cell }) => {
+      //   return (
+      //     <button value={cell.row.values.name}>{cell.row.values.name}</button>
+      //   );
+      // },
+      onClick: (cell) => console.log(cell),
+    },
+  ];
+
+  const data = [
+    {
+      firstName: "Mahmoud",
+      lastName: "Bassam",
+      age: 24,
+      salary: 4000,
+    },
+    {
+      firstName: "Mahmoud",
+      lastName: "Bassam",
+      age: 24,
+      salary: 4000,
+    },
+    {
+      firstName: "Mahmoud",
+      lastName: "Bassam",
+      age: 24,
+      salary: 4000,
+    },
+  ];
+
+  return <Table data={data} columns={columns} />;
 };
 
 export default Users;

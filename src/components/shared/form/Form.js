@@ -12,7 +12,7 @@ import {
 import formValidations from "../../../common/formValidations";
 import CommonButton from "../Button/Button";
 
-const { form, formActions } = styles;
+const { form, formActions, formSubmitButton } = styles;
 
 const Form = ({
   formFields,
@@ -41,31 +41,21 @@ const Form = ({
 
   const updateFormFieldValues = (target, field) => {
     const valuesClone = { ...formFieldsValue };
-    const newFormFieldErrors = { ...formFieldErrors };
-
     valuesClone[field.props.name] = target.value;
-    newFormFieldErrors[field.props.name] = {
-      ...newFormFieldErrors[field.props.name],
-      dirty: editMode
-        ? target.value === valuesClone[field.props.name]
-        : !!target.value,
-    };
     setFormFieldsValue(valuesClone);
-    setFormFieldErrors(newFormFieldErrors);
   };
 
-  const handleFormFieldChange = ({ target }, field) => {
-    updateFormFieldValues(target, field);
-    handleComparableFieldChange(field);
-  };
-
-  const handleFormFieldValidation = ({ target }, field) => {
+  const handleFormFieldValidation = (
+    { target },
+    field,
+    withErrorMessages = true
+  ) => {
     const newFormFieldErrors = { ...formFieldErrors };
     field.validations.every((validation) => {
       const { isValid, message } = formValidations[validation](
         target.value,
         field.props.label,
-        field.validationParams
+        { withErrorMessage: withErrorMessages, ...field.validationParams }
       );
 
       if (!isValid) {
@@ -73,6 +63,7 @@ const Form = ({
           isValid,
           message,
           touched: true,
+          dirty: !!target.value,
         };
 
         return false;
@@ -81,12 +72,18 @@ const Form = ({
         isValid: true,
         message: null,
         touched: true,
+        dirty: !!target.value,
       };
 
       return true;
     });
     setFormFieldErrors(newFormFieldErrors);
     setIsFormValid(getIsFormValid(newFormFieldErrors));
+  };
+  const handleFormFieldChange = ({ target }, field) => {
+    updateFormFieldValues(target, field);
+    handleComparableFieldChange(field);
+    handleFormFieldValidation({ target }, field, false);
   };
 
   const getIsFormValid = (newFormFieldErrors) => {
@@ -100,7 +97,7 @@ const Form = ({
   };
 
   return (
-    <div className={form}>
+    <form className={form}>
       {formFields.map((field, index) => {
         const formComponent = formComponentsMap[field.component];
         const valueProp =
@@ -114,7 +111,11 @@ const Form = ({
             {...field.props}
             width={formFieldWidth[field.width || "full"]}
             onChange={(e) => handleFormFieldChange(e, field)}
-            onBlur={(e) => handleFormFieldValidation(e, field)}
+            onBlur={(e) =>
+              !formFieldErrors[field.props.name].dirty
+                ? handleFormFieldValidation(e, field)
+                : null
+            }
             error={formFieldErrors[field.props.name].message}
             {...valueProp}
           />
@@ -126,6 +127,7 @@ const Form = ({
           disabled={!isFormValid}
           color={submitButton.color}
           onClick={() => onSubmit(formFieldsValue)}
+          className={`${formSubmitButton} ${submitButton.className || ""}`}
         />
         {secondaryButton && (
           <CommonButton
@@ -134,7 +136,7 @@ const Form = ({
           />
         )}
       </div>
-    </div>
+    </form>
   );
 };
 

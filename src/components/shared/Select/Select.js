@@ -1,5 +1,4 @@
 import React, { useRef, useState } from "react";
-import FadeUpDown from "../../../animations/FadeUpDown/FadeUpDown";
 import Dropdown from "../Dropdown/Dropdown";
 import SelectButton from "./SelectButton/SelectButton";
 import formStyles from "../../../styles/form.module.scss";
@@ -9,6 +8,7 @@ import {
   getNamesFromIds,
   createSelectedItemsMap,
 } from "./selectHelpers";
+import Animate from "../Animate/Animate";
 const { selectContainer, selectButtonOpened } = styles;
 const { inputLabel, hasError, fieldError } = formStyles;
 
@@ -16,7 +16,7 @@ const Select = ({
   items,
   onChange = () => {},
   onBlur = () => {},
-  label = "select label",
+  label,
   className,
   multiSelect,
   value = multiSelect ? [] : "",
@@ -27,7 +27,6 @@ const Select = ({
   if (multiSelect && !value.length) {
     value = [];
   }
-  const nodeRef = useRef(null);
 
   const defaultButtonText = multiSelect
     ? getNamesFromIds(value, items, placeholder) || placeholder
@@ -85,7 +84,7 @@ const Select = ({
         !!error ? hasError : ""
       }`}
     >
-      <label className={inputLabel}>{label}</label>
+      {label && <label className={inputLabel}>{label}</label>}
       <SelectButton
         node={node}
         setShowDropdown={(showState) => {
@@ -114,11 +113,9 @@ const Select = ({
         selectedItemsMap={selectedItemsMap}
         value={defaultValue}
       />
-      <FadeUpDown nodeRef={nodeRef} showsIn={!!error}>
-        <span ref={nodeRef} className={fieldError}>
-          {error}
-        </span>
-      </FadeUpDown>
+      <Animate animationType="fadeUpDown" showsIn={!!error}>
+        <span className={fieldError}>{error}</span>
+      </Animate>
     </div>
   );
 };
