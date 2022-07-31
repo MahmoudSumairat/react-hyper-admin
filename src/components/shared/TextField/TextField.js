@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 import formStyles from "../../../styles/form.module.scss";
 import { v4 as uuidv4 } from "uuid";
-import FadeUpDown from "../../../animations/FadeUpDown/FadeUpDown";
+import Animate from "../Animate/Animate";
 
 const { textField, textFieldInput } = styles;
 
@@ -18,8 +18,6 @@ const TextField = (props) => {
     width,
   } = props;
 
-  const nodeRef = useRef(null);
-
   return (
     <div
       className={`${textField} ${className} ${width} ${
@@ -33,17 +31,16 @@ const TextField = (props) => {
         <textarea className={textFieldInput} id={id} type="text" {...props} />
       ) : (
         <input
+          autoComplete="off"
           className={`${formInput} ${textFieldInput}`}
           id={id}
           type="text"
           {...props}
         />
       )}
-      <FadeUpDown nodeRef={nodeRef} showsIn={!!error}>
-        <span ref={nodeRef} className={fieldError}>
-          {error}
-        </span>
-      </FadeUpDown>
+      <Animate animationType="fadeUpDown" showsIn={!!error}>
+        <span className={fieldError}>{error}</span>
+      </Animate>
     </div>
   );
 };
