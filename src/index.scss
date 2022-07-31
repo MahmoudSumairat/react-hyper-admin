@@ -1,5 +1,7 @@
 // Third Parties
 @import "/node_modules/bootstrap/scss/bootstrap";
+@import "react-datepicker/dist/react-datepicker.css";
 
 // utils
-@import "./scss/general";
+@import "./styles/general";
+@import "./styles/calendar-overrides";

@@ -1,13 +1,14 @@
-@import "../../../scss/variables";
+@import "../../../styles/variables";
 
 .selectContainer {
   position: relative;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
 }
 
 .selectButton {
   all: unset;
-  background-color: $white;
+  background-color: $light-grey;
   padding: 10px 30px;
   border-radius: 15px;
   text-transform: capitalize;
@@ -29,5 +30,27 @@
 .selectButtonOpened {
   svg {
     transform: rotateZ(-180deg);
+  }
+}
+
+.selectFieldError {
+  color: $danger;
+  position: absolute;
+  left: 10px;
+  bottom: -25px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.selectLabel {
+  margin-bottom: 10px;
+  text-transform: capitalize;
+  color: $primary-dark;
+}
+
+.hasError {
+  button {
+    border-color: $danger !important;
+    background-color: rgba($danger, 0.1) !important;
   }
 }

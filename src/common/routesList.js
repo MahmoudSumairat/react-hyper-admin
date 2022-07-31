@@ -1,13 +1,14 @@
 import { faHouse, faUsers } from "@fortawesome/free-solid-svg-icons";
 import Home from "../pages/Home/Home";
+import Login from "../pages/Login/Login";
 import Users from "../pages/Users/Users";
 
-export const routes = [
+export const getRoutes = (isAuthenticated) => [
   {
-    name: "Home",
+    name: isAuthenticated ? "Home" : "Login",
     path: "/",
     icon: faHouse,
-    component: Home,
+    component: isAuthenticated ? Home : Login,
   },
   {
     name: "Users",
@@ -17,4 +18,4 @@ export const routes = [
   },
 ];
 
-export default routes;
+export default getRoutes;

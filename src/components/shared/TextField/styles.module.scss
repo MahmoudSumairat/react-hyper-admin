@@ -1,0 +1,32 @@
+@import "../../../styles/variables";
+
+.textField {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.textFieldInput {
+  border: 1px solid $light-grey;
+  background-color: $light-grey;
+  border-radius: 11px;
+  padding: 13px 20px;
+  color: $primary;
+  transition: all 0.1s ease-in-out;
+  position: relative;
+  z-index: 99;
+  resize: none;
+
+  &::placeholder {
+    color: rgba($primary, 0.6);
+    text-transform: capitalize;
+  }
+
+  &:focus,
+  &:active {
+    outline: 0;
+    box-shadow: 0;
+    border-color: $primary;
+    background-color: darken($light-grey, 1);
+  }
+}

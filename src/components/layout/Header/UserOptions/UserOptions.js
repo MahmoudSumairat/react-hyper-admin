@@ -3,12 +3,25 @@ import { faGear, faPowerOff, faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dropdown from "../../../shared/Dropdown/Dropdown";
 import styles from "./styles.module.scss";
+import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { logoutAction } from "../../../../redux/actionCreators/auth";
 
 const { userOptions, userOptionsButton, userOptionsDropdown } = styles;
 
 const UserOptions = () => {
   const [showOptionsDropdown, setShowOptionsDropdown] = useState(false);
   const node = useRef();
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logout = () => {
+    // Do logout stuff
+    localStorage.removeItem("authToken");
+    dispatch(logoutAction());
+    navigate("/", { replace: true });
+  };
+
   const userOptionsList = [
     {
       displayName: "Profile",
@@ -26,6 +39,7 @@ const UserOptions = () => {
       id: 3,
       withDivider: true,
       icon: faPowerOff,
+      onClick: logout,
     },
   ];
 

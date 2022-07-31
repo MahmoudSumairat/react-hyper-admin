@@ -1,17 +1,16 @@
-@import "../../../../scss/variables";
+@import "../../../../styles/variables";
 
 .selectButton {
   all: unset;
-  background-color: $white;
-  padding: 10px 30px;
-  border-radius: 15px;
+  background-color: $light-grey;
+  padding: 14px 20px;
+  border-radius: 11px;
   text-transform: capitalize;
   color: $primary;
   min-width: 115px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-
   svg {
     transition: all 0.2s ease-in-out;
   }
