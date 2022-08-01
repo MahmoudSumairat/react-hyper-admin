@@ -1,8 +1,9 @@
+import getAuthToken from "../../utils/getAuthToken";
 import { LOGIN, LOGOUT } from "../actions/auth";
 
 const initialState = {
-  isAuthenticated: false,
-  authToken: null,
+  isAuthenticated: !!getAuthToken(),
+  authToken: getAuthToken(),
 };
 
 const authReducer = (state = initialState, action) => {

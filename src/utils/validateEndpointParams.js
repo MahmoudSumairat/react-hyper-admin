@@ -1,6 +1,4 @@
 function validateEndpointParams(endpointName, ...args) {
-  //endpointName will be the last param
-
   const hasData = args.length;
 
   if (!hasData) {

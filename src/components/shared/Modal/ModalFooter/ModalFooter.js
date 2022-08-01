@@ -4,7 +4,13 @@ import styles from "./styles.module.scss";
 
 const { modalButton, modalFooter } = styles;
 
-const ModalFooter = ({ confirmButtonClick, hideModal, isConfirmation }) => {
+const ModalFooter = ({
+  confirmButtonClick,
+  hideModal,
+  isConfirmation,
+  color,
+  confirmTitle,
+}) => {
   return (
     <div className={modalFooter}>
       <CommonButton
@@ -16,11 +22,12 @@ const ModalFooter = ({ confirmButtonClick, hideModal, isConfirmation }) => {
       {isConfirmation && (
         <CommonButton
           className={modalButton}
+          color={color}
           onClick={() => {
             confirmButtonClick();
             hideModal();
           }}
-          label={"Confirm"}
+          label={confirmTitle}
         />
       )}
     </div>

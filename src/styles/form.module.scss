@@ -2,7 +2,8 @@
 
 .hasError {
   input,
-  button {
+  button,
+  textarea {
     border-color: $danger !important;
     background-color: rgba($danger, 0.1) !important;
   }

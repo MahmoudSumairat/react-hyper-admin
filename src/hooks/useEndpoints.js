@@ -24,8 +24,8 @@ const useEndpoints = () => {
     let originalEndpoint = endpoints[key];
 
     endpoints[key] = (...args) => {
-      if (validateEndpointParams(key, ...args)) {
-        originalEndpoint(...args);
+      if (!originalEndpoint.length || validateEndpointParams(key, ...args)) {
+        return originalEndpoint(...args);
       }
     };
   });

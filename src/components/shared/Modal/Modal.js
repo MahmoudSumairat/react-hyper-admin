@@ -11,7 +11,14 @@ const { modal, modalOverlay } = styles;
 const Modal = () => {
   const { showModal, modalContent } = useSelector((state) => state.modal);
   const { hideModal } = useModal();
-  const { title, message, type, confirmButtonClick } = modalContent;
+  const {
+    title,
+    message,
+    type,
+    confirmButtonClick,
+    color = "primary",
+    confirmTitle = "confirm",
+  } = modalContent;
   const isConfirmation = type === "confirmation";
 
   return (
@@ -25,6 +32,8 @@ const Modal = () => {
             isConfirmation={isConfirmation}
             hideModal={hideModal}
             confirmButtonClick={confirmButtonClick}
+            color={color}
+            confirmTitle={confirmTitle}
           />
         </div>
       </Animate>

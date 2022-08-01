@@ -15,4 +15,13 @@
   margin: 0;
   height: 28px;
   @include flex-center();
+  background-color: $white !important;
+
+  &:hover {
+    background-color: $light-grey !important;
+  }
+}
+
+.checkboxCell {
+  justify-content: flex-start !important;
 }

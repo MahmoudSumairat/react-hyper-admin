@@ -5,22 +5,39 @@ import styles from "./table.module.scss";
 import TableHead from "./TableHead/TableHead";
 import TableBody from "./TableBody/TableBody";
 import TablePagination from "./Pagination/Pagination";
-import { renderColumnType } from "./rowHelpers";
+import { addDeleteColumn, addColumnTypes } from "./rowHelpers";
+import { useModal } from "../../../hooks";
+import TableHeader from "./TableHeader/TableHeader";
 
 const { commonTable } = styles;
 
-const Table = ({ columns, data, onRowClick = () => {} }) => {
-  columns.forEach((column) => {
-    if (column.type) {
-      renderColumnType(column);
-    }
+const Table = ({
+  columns = [],
+  data = [],
+  withDeleteRowButton = true,
+  rowTitle = "record",
+  tableTitle = "rows list",
+  addRowURL = "",
+  onRowClick = () => {},
+  deleteRowClick = () => {},
+}) => {
+  const { showModal } = useModal();
+
+  addDeleteColumn({
+    withDeleteRowButton,
+    columns,
+    showModal,
+    rowTitle,
+    deleteRowClick,
   });
+
+  addColumnTypes(columns);
 
   const {
     getTableProps,
     getTableBodyProps,
-    headerGroups,
     prepareRow,
+    headerGroups,
     page,
     canPreviousPage,
     canNextPage,
@@ -40,29 +57,36 @@ const Table = ({ columns, data, onRowClick = () => {} }) => {
   );
 
   return (
-    <Box>
-      <table className={commonTable} {...getTableProps()}>
-        <TableHead headerGroups={headerGroups} />
-        <TableBody
-          onRowClick={onRowClick}
-          prepareRow={prepareRow}
-          page={page}
-          getTableBodyProps={getTableBodyProps}
-        />
-      </table>
-      <TablePagination
-        pageOptions={pageOptions}
-        gotoPage={gotoPage}
-        pageIndex={pageIndex}
-        canPreviousPage={canPreviousPage}
-        previousPage={previousPage}
-        nextPage={nextPage}
-        canNextPage={canNextPage}
-        pageCount={canNextPage}
-        pageSize={pageSize}
-        setPageSize={setPageSize}
+    <>
+      <TableHeader
+        addRowURL={addRowURL}
+        rowTitle={rowTitle}
+        tableTitle={tableTitle}
       />
-    </Box>
+      <Box>
+        <table className={commonTable} {...getTableProps()}>
+          <TableHead headerGroups={headerGroups} />
+          <TableBody
+            onRowClick={onRowClick}
+            prepareRow={prepareRow}
+            page={page}
+            getTableBodyProps={getTableBodyProps}
+          />
+        </table>
+        <TablePagination
+          pageOptions={pageOptions}
+          gotoPage={gotoPage}
+          pageIndex={pageIndex}
+          canPreviousPage={canPreviousPage}
+          previousPage={previousPage}
+          nextPage={nextPage}
+          canNextPage={canNextPage}
+          pageCount={canNextPage}
+          pageSize={pageSize}
+          setPageSize={setPageSize}
+        />
+      </Box>
+    </>
   );
 };
 

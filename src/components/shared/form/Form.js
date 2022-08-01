@@ -11,8 +11,10 @@ import {
 } from "./formHelpers";
 import formValidations from "../../../common/formValidations";
 import CommonButton from "../Button/Button";
+import Box from "../Box/Box";
 
-const { form, formActions, formSubmitButton } = styles;
+const { form, formActions, formSubmitButton, formHeader, formTitleText } =
+  styles;
 
 const Form = ({
   formFields,
@@ -20,6 +22,7 @@ const Form = ({
   submitButton = { text: "submit", color: "primary" },
   secondaryButton,
   onSubmit = () => {},
+  formTitle = "create new item",
 }) => {
   const [formFieldsValue, setFormFieldsValue] = useState(
     getFormFieldsValues(formFields)
@@ -96,47 +99,58 @@ const Form = ({
     return touchedInputs && validInputs;
   };
 
+  console.log(editMode);
+
   return (
-    <form className={form}>
-      {formFields.map((field, index) => {
-        const formComponent = formComponentsMap[field.component];
-        const valueProp =
-          field.component === "checkbox"
-            ? { checked: formFieldsValue[field.props.name] }
-            : { value: formFieldsValue[field.props.name] };
-        return (
-          <formComponent.component
-            key={index}
-            {...formComponent.props}
-            {...field.props}
-            width={formFieldWidth[field.width || "full"]}
-            onChange={(e) => handleFormFieldChange(e, field)}
-            onBlur={(e) =>
-              !formFieldErrors[field.props.name].dirty
-                ? handleFormFieldValidation(e, field)
-                : null
-            }
-            error={formFieldErrors[field.props.name].message}
-            {...valueProp}
-          />
-        );
-      })}
-      <div className={formActions}>
-        <CommonButton
-          label={submitButton.text}
-          disabled={!isFormValid}
-          color={submitButton.color}
-          onClick={() => onSubmit(formFieldsValue)}
-          className={`${formSubmitButton} ${submitButton.className || ""}`}
-        />
-        {secondaryButton && (
-          <CommonButton
-            label={secondaryButton.text}
-            color={secondaryButton.color}
-          />
-        )}
+    <>
+      <div className={formHeader}>
+        <h5 className={formTitleText}>{formTitle}</h5>
       </div>
-    </form>
+      <Box>
+        <form className={form}>
+          {formFields.map((field, index) => {
+            const formComponent = formComponentsMap[field.component];
+            const valueProp =
+              field.component === "checkbox"
+                ? { checked: formFieldsValue[field.props.name] }
+                : { value: formFieldsValue[field.props.name] };
+            return (
+              <formComponent.component
+                key={index}
+                {...formComponent.props}
+                {...field.props}
+                width={formFieldWidth[field.width || "full"]}
+                onChange={(e) => handleFormFieldChange(e, field)}
+                onBlur={(e) =>
+                  !formFieldErrors[field.props.name].dirty
+                    ? handleFormFieldValidation(e, field)
+                    : null
+                }
+                error={formFieldErrors[field.props.name].message}
+                {...valueProp}
+              />
+            );
+          })}
+          <div className={formActions}>
+            <CommonButton
+              label={editMode ? "Save Changes" : submitButton.text}
+              disabled={!isFormValid}
+              color={submitButton.color || "primary"}
+              onClick={() => onSubmit(formFieldsValue)}
+              className={`${formSubmitButton} ${submitButton.className || ""}`}
+              type="button"
+            />
+            {secondaryButton && (
+              <CommonButton
+                label={secondaryButton.text}
+                color={secondaryButton.color}
+                type="button"
+              />
+            )}
+          </div>
+        </form>
+      </Box>
+    </>
   );
 };
 

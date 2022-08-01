@@ -42,9 +42,10 @@ const PaginationArrows = ({
 
   return (
     <div className={pageButtons}>
-      {buttonsList.map((button) => {
+      {buttonsList.map((button, index) => {
         return (
           <CommonButton
+            key={index}
             {...button}
             className={paginationButton}
             color={"textPrimary"}

@@ -8,7 +8,7 @@ import {
   deleteEventCategoryRoute,
 } from "../routes/eventCategories";
 
-const addNewEventCategory = (categoryData) => {
+const addEventCategory = (categoryData) => {
   return http.post(addNewEventCategoryRoute(), categoryData);
 };
 
@@ -20,7 +20,7 @@ const getEventCategoryDetails = (categoryId) => {
   return http.get(getEventCategoryDetailsRoute(categoryId));
 };
 
-const updateEventCategoryDetails = (categoryId, categoryData) => {
+const updateEventCategory = (categoryId, categoryData) => {
   return http.put(updateEventCategoryRoute(categoryId), categoryData);
 };
 
@@ -29,10 +29,10 @@ const deleteEventCategory = (categoryId) => {
 };
 
 const eventCategoriesEndpoints = {
-  addNewEventCategory,
+  addEventCategory,
   getEventCategories,
   getEventCategoryDetails,
-  updateEventCategoryDetails,
+  updateEventCategory,
   deleteEventCategory,
 };
 
