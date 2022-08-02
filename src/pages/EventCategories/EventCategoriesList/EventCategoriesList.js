@@ -47,15 +47,13 @@ const EventCategoriesList = () => {
   };
 
   return (
-    <div>
-      <Table
-        columns={columns}
-        rowTitle="event category"
-        deleteRowClick={handleRowDelete}
-        data={eventCategories}
-        addRowURL="/add-event-category"
-      />
-    </div>
+    <Table
+      columns={columns}
+      rowTitle="event category"
+      deleteRowClick={handleRowDelete}
+      data={eventCategories}
+      addRowURL="/add-event-category"
+    />
   );
 };
 

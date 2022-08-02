@@ -1,4 +1,9 @@
-import { faHouse, faUsers, faList } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHouse,
+  faUsers,
+  faList,
+  faListCheck,
+} from "@fortawesome/free-solid-svg-icons";
 import EventCategoriesList from "../pages/EventCategories/EventCategoriesList/EventCategoriesList";
 import CreateUpdateEventCategory from "../pages/EventCategories/CreateUpdateEventCategory/CreateUpdateEventCategory";
 import Home from "../pages/Home/Home";
@@ -39,6 +44,12 @@ export const getRoutes = (isAuthenticated) => [
     pageLevel: 2,
     rootPage: "event-categories",
   },
+  // {
+  //   name: "Event Sub Categories",
+  //   path: "/event-sub-categories",
+  //   icon: faListCheck,
+  //   component: EventCategoriesList,
+  // },
 ];
 
 export default getRoutes;

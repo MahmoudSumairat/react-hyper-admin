@@ -13,8 +13,7 @@ import formValidations from "../../../common/formValidations";
 import CommonButton from "../Button/Button";
 import Box from "../Box/Box";
 
-const { form, formActions, formSubmitButton, formHeader, formTitleText } =
-  styles;
+const { form, formActions, formButton, formHeader, formTitleText } = styles;
 
 const Form = ({
   formFields,
@@ -132,21 +131,23 @@ const Form = ({
             );
           })}
           <div className={formActions}>
-            <CommonButton
-              label={editMode ? "Save Changes" : submitButton.text}
-              disabled={!isFormValid}
-              color={submitButton.color || "primary"}
-              onClick={() => onSubmit(formFieldsValue)}
-              className={`${formSubmitButton} ${submitButton.className || ""}`}
-              type="button"
-            />
             {secondaryButton && (
               <CommonButton
                 label={secondaryButton.text}
                 color={secondaryButton.color}
                 type="button"
+                onClick={secondaryButton.onClick}
+                className={formButton}
               />
             )}
+            <CommonButton
+              label={editMode ? "Save Changes" : submitButton.text}
+              disabled={!isFormValid}
+              color={submitButton.color || "primary"}
+              onClick={() => onSubmit(formFieldsValue)}
+              className={`${formButton} ${submitButton.className || ""}`}
+              type="button"
+            />
           </div>
         </form>
       </Box>

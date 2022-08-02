@@ -20,6 +20,7 @@ const Table = ({
   addRowURL = "",
   onRowClick = () => {},
   deleteRowClick = () => {},
+  onAddButtonClick = () => {},
 }) => {
   const { showModal } = useModal();
 
@@ -62,6 +63,7 @@ const Table = ({
         addRowURL={addRowURL}
         rowTitle={rowTitle}
         tableTitle={tableTitle}
+        onAddButtonClick={onAddButtonClick}
       />
       <Box>
         <table className={commonTable} {...getTableProps()}>
