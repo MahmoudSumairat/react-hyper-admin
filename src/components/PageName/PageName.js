@@ -6,7 +6,6 @@ const { pageNameContainer, pageNameText } = styles;
 
 const PageName = (props) => {
   const { pageName } = useSelector((state) => state.header);
-  console.log(props.location);
   return (
     <div className={pageNameContainer}>
       <span className={pageNameText}>{pageName}</span>

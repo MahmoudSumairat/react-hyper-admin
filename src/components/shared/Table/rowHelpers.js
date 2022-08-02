@@ -3,7 +3,7 @@ import CommonButton from "../Button/Button";
 import moment from "moment";
 import styles from "./table.module.scss";
 import Checkbox from "../Checkbox/Checkbox";
-const { rowButton, checkboxCell } = styles;
+const { rowButton, checkboxCell, activeStatus, inactiveStatus } = styles;
 
 const renderColumnType = (column) => {
   const { type } = column;
@@ -31,6 +31,14 @@ const renderColumnType = (column) => {
       column.Cell = ({ cell }) => {
         const checked = cell.row.values[column.accessor];
         return <Checkbox className={checkboxCell} checked={checked} />;
+      };
+      break;
+    case "active-status":
+      column.Cell = ({ cell }) => {
+        const isActive = cell.row.values[column.accessor];
+        const isActiveText = isActive ? "Active" : "Inactive";
+        const isActiveClass = isActive ? activeStatus : inactiveStatus;
+        return <span className={isActiveClass}>{isActiveText}</span>;
       };
       break;
     default:

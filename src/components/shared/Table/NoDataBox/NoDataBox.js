@@ -1,26 +1,29 @@
 import { faAdd } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useNavigate } from "react-router";
+import Box from "../../Box/Box";
 import CommonButton from "../../Button/Button";
 import styles from "./styles.module.scss";
 
-const { commonTableHeader, commonTableTitle, commonTableAddButton } = styles;
+const { noData, noDataTitle } = styles;
 
-const TableHeader = ({ rowTitle, tableTitle, addRowURL, onAddButtonClick }) => {
+const NoDataBox = ({ tableTitle, addRowURL, onAddButtonClick, rowTitle }) => {
   const navigate = useNavigate();
+
   return (
-    <div className={commonTableHeader}>
-      <h5 className={commonTableTitle}>{tableTitle}</h5>
+    <Box className={noData}>
+      <h5 className={noDataTitle}>
+        There were no results found for {tableTitle}
+      </h5>
       <CommonButton
         onClick={() =>
           addRowURL ? navigate(addRowURL, { replace: true }) : onAddButtonClick
         }
-        className={commonTableAddButton}
         icon={faAdd}
         label={`new ${rowTitle}`}
-      />
-    </div>
+      />{" "}
+    </Box>
   );
 };
 
-export default TableHeader;
+export default NoDataBox;

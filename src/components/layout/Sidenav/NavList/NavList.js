@@ -37,7 +37,7 @@ const NavList = () => {
   useEffect(() => {
     initializePageName(location, isAuthenticated, dispatch);
     /* eslint-disable */
-  }, []);
+  }, [location.pathname]);
 
   return routes(isAuthenticated)
     .filter((route) => !route.hideFromMenu)

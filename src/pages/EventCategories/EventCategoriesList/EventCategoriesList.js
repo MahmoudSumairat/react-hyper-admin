@@ -33,7 +33,9 @@ const EventCategoriesList = () => {
   const [eventCategories, setEventCategories] = useState([]);
 
   useEffect(() => {
-    getEventCategories().then((response) => setEventCategories(response.data));
+    getEventCategories().then((response) =>
+      setEventCategories(response.data.length ? response.data : [])
+    );
     /* eslint-disable */
   }, []);
 

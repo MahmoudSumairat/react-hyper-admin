@@ -2,13 +2,15 @@ import {
   faHouse,
   faUsers,
   faList,
-  faListCheck,
+  faCalendarCheck,
 } from "@fortawesome/free-solid-svg-icons";
 import EventCategoriesList from "../pages/EventCategories/EventCategoriesList/EventCategoriesList";
 import CreateUpdateEventCategory from "../pages/EventCategories/CreateUpdateEventCategory/CreateUpdateEventCategory";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Users from "../pages/Users/Users";
+import EventTypesList from "../pages/EventTypes/EventTypesList/EventTypesList";
+import CreateUpdateEventType from "../pages/EventTypes/CreateUpdateEventType/CreateUpdateEventType";
 
 export const getRoutes = (isAuthenticated) => [
   {
@@ -44,12 +46,26 @@ export const getRoutes = (isAuthenticated) => [
     pageLevel: 2,
     rootPage: "event-categories",
   },
-  // {
-  //   name: "Event Sub Categories",
-  //   path: "/event-sub-categories",
-  //   icon: faListCheck,
-  //   component: EventCategoriesList,
-  // },
+  {
+    name: "Event Types",
+    path: "/event-types",
+    icon: faCalendarCheck,
+    component: EventTypesList,
+  },
+  {
+    name: "Add Event Type",
+    path: "/add-event-type",
+    hideFromMenu: true,
+    component: CreateUpdateEventType,
+  },
+  {
+    name: "Event Type Details",
+    path: "/event-types/:eventTypeId",
+    component: CreateUpdateEventType,
+    hideFromMenu: true,
+    pageLevel: 2,
+    rootPage: "event-types",
+  },
 ];
 
 export default getRoutes;

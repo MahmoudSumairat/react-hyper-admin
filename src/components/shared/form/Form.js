@@ -98,8 +98,6 @@ const Form = ({
     return touchedInputs && validInputs;
   };
 
-  console.log(editMode);
-
   return (
     <>
       <div className={formHeader}>

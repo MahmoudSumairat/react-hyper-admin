@@ -8,8 +8,9 @@ import TablePagination from "./Pagination/Pagination";
 import { addDeleteColumn, addColumnTypes } from "./rowHelpers";
 import { useModal } from "../../../hooks";
 import TableHeader from "./TableHeader/TableHeader";
+import NoDataBox from "./NoDataBox/NoDataBox";
 
-const { commonTable } = styles;
+const { commonTable, noData, noDataTitle } = styles;
 
 const Table = ({
   columns = [],
@@ -18,7 +19,8 @@ const Table = ({
   rowTitle = "record",
   tableTitle = "rows list",
   addRowURL = "",
-  onRowClick = () => {},
+  itemDetailsURL = "",
+  onRowClick,
   deleteRowClick = () => {},
   onAddButtonClick = () => {},
 }) => {
@@ -57,6 +59,17 @@ const Table = ({
     usePagination
   );
 
+  if (!data.length) {
+    return (
+      <NoDataBox
+        tableTitle={tableTitle}
+        addRowURL={addRowURL}
+        onAddButtonClick={onAddButtonClick}
+        rowTitle={rowTitle}
+      />
+    );
+  }
+
   return (
     <>
       <TableHeader
@@ -73,6 +86,7 @@ const Table = ({
             prepareRow={prepareRow}
             page={page}
             getTableBodyProps={getTableBodyProps}
+            itemDetailsURL={itemDetailsURL}
           />
         </table>
         <TablePagination

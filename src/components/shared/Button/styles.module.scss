@@ -7,6 +7,7 @@
   margin: 10px;
   transition: all 0.1s ease-in-out;
   cursor: pointer;
+  text-transform: capitalize;
 
   &:disabled {
     opacity: 0.5;

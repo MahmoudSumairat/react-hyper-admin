@@ -15,7 +15,7 @@
   margin: 0;
   height: 28px;
   @include flex-center();
-  background-color: $white !important;
+  background-color: transparent !important;
 
   &:hover {
     background-color: $light-grey !important;
@@ -24,4 +24,18 @@
 
 .checkboxCell {
   justify-content: flex-start !important;
+}
+
+.activeStatus {
+  color: $success;
+}
+
+.inactiveStatus {
+  color: $danger;
+}
+
+.noData {
+  height: 500px;
+  @include flex-center();
+  flex-direction: column;
 }

@@ -1,7 +1,7 @@
 const responseErrorHandler = (err) => {
   // handle response error
 
-  console.error("Response Error : ", err.response.data.message);
+  console.error("Response Error : ", err);
 
   return Promise.reject(err);
 };
@@ -9,7 +9,7 @@ const responseErrorHandler = (err) => {
 const responseParser = (response) => {
   // parse response data
 
-  if (response.config.method === "get" && !response.data.data) {
+  if (response.config.method === "get" && !response.data) {
     return Promise.reject("Response does not have data object.");
   }
 

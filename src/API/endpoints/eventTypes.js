@@ -9,7 +9,7 @@ import {
 } from "../routes/eventTypes";
 
 const addEventType = (eventTypeData) => {
-  return http.post(addEventTypeRoute, eventTypeData);
+  return http.post(addEventTypeRoute(), eventTypeData);
 };
 
 const getEventTypes = () => {
