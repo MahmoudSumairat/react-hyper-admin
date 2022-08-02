@@ -1,18 +1,14 @@
 import React, { useState } from "react";
 import Box from "../Box/Box";
 import styles from "./styles.module.scss";
+import TabBody from "./TabBody/TabBody";
 
-const {
-  tabsContainer,
-  tabsHeader,
-  tabsHeaderItem,
-  tabsBody,
-  tabsContent,
-  activeTab,
-} = styles;
+const { tabsContainer, tabsHeader, tabsHeaderItem, tabsBody, activeTab } =
+  styles;
 
 const Tabs = ({ tabs = [] }) => {
   const [currentTabIndex, setCurrentTabIndex] = useState(0);
+  const [switchState, setSwitchState] = useState(true);
 
   return (
     <div className={tabsContainer}>
@@ -20,7 +16,10 @@ const Tabs = ({ tabs = [] }) => {
         {tabs.map((tab, index) => {
           return (
             <span
-              onClick={() => setCurrentTabIndex(index)}
+              onClick={() => {
+                setCurrentTabIndex(index);
+                setSwitchState(!switchState);
+              }}
               className={`${tabsHeaderItem} ${
                 index === currentTabIndex ? activeTab : ""
               } `}
@@ -31,13 +30,11 @@ const Tabs = ({ tabs = [] }) => {
         })}
       </Box>
       <Box className={tabsBody}>
-        {tabs.map((tab, index) => {
-          return (
-            index === currentTabIndex && (
-              <div className={tabsContent}>{tab.component}</div>
-            )
-          );
-        })}
+        <TabBody
+          switchState={switchState}
+          currentTabIndex={currentTabIndex}
+          tabs={tabs}
+        />
       </Box>
     </div>
   );
