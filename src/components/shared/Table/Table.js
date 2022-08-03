@@ -10,7 +10,7 @@ import { useModal } from "../../../hooks";
 import TableHeader from "./TableHeader/TableHeader";
 import NoDataBox from "./NoDataBox/NoDataBox";
 
-const { commonTable, noData, noDataTitle } = styles;
+const { commonTable } = styles;
 
 const Table = ({
   columns = [],

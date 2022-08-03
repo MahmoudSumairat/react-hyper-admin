@@ -4,6 +4,7 @@ import Radio from "../Radio/Radio";
 import TextField from "../TextField/TextField";
 import Select from "../Select/Select";
 import styles from "./styles.module.scss";
+import Toggle from "../Toggle/Toggle";
 
 const {
   fullWidth,
@@ -45,6 +46,9 @@ const formComponentsMap = {
   },
   radio: {
     component: Radio,
+  },
+  toggle: {
+    component: Toggle,
   },
   textarea: {
     component: TextField,
@@ -92,10 +96,10 @@ const initFormFieldErrors = (formFields) => {
       (field.props.value !== undefined || field.props.checked)
     ) {
       formFieldErrors[field.props.name] = {
-        isValid: false,
-        touched: false,
+        isValid: !field.validations.length,
+        touched: !field.validations.length,
         message: "",
-        dirty: false,
+        dirty: !field.validations.length,
       };
     } else {
       return console.error(

@@ -9,7 +9,7 @@ const DropdownItem = ({ item, onSelectionChange }) => {
   const itemInnerHTML = (
     <>
       {item.icon && <FontAwesomeIcon icon={item.icon} />}
-      <span className={dropdownItemText}>{item.displayName}</span>
+      <span className={dropdownItemText}>{item.displayName || item.name}</span>
     </>
   );
 

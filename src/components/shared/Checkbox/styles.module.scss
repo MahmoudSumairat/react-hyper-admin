@@ -82,4 +82,5 @@
 
 .checkboxContainer {
   @include flex-center();
+  justify-content: flex-start;
 }

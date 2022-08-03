@@ -111,6 +111,7 @@ const Form = ({
               field.component === "checkbox"
                 ? { checked: formFieldsValue[field.props.name] }
                 : { value: formFieldsValue[field.props.name] };
+
             return (
               <formComponent.component
                 key={index}

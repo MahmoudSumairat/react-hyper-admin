@@ -33,9 +33,3 @@
 .inactiveStatus {
   color: $danger;
 }
-
-.noData {
-  height: 500px;
-  @include flex-center();
-  flex-direction: column;
-}

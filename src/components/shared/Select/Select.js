@@ -58,15 +58,16 @@ const Select = ({
       buttonText = multiSelectButtonValue || placeholder;
     } else {
       buttonText = changes.displayName;
-      setDefaultValue(changes);
+      setDefaultValue(changes.id);
     }
 
     setSelectButtonText(buttonText);
     const result = multiSelect
       ? { target: { value: newSelectedItems } }
-      : { target: { value: changes } };
+      : { target: { value: changes.id } };
     onChange(result);
     onBlur(result);
+    setIsDropdownTouched(false);
   };
 
   const handleMultiSelectChange = ({ target }, { id }) => {
@@ -106,9 +107,9 @@ const Select = ({
         onSelectionChange={
           multiSelect ? handleMultiSelectChange : handleSelectionChange
         }
-        onBlur={() =>
-          isDropdownTouched && onBlur({ target: { value: defaultValue } })
-        }
+        onBlur={() => {
+          isDropdownTouched && onBlur({ target: { value: defaultValue } });
+        }}
         multiSelect={multiSelect}
         selectedItemsMap={selectedItemsMap}
         value={defaultValue}

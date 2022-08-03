@@ -4,7 +4,7 @@ import DropdownList from "./DropdownList/DropdownList";
 import styles from "./styles.module.scss";
 
 const handleClickOutsideEventListener = (clickOutside) => {
-  document.addEventListener("mousedown", clickOutside);
+  document.addEventListener("mousedown", clickOutside, { once: true });
   return () => {
     document.removeEventListener("mousedown", clickOutside);
   };
@@ -24,13 +24,16 @@ const Dropdown = ({
 }) => {
   const node = useRef();
 
-  const clickOutside = ({ target }) => {
+  const clickOutside = (e) => {
+    const { target } = e;
     const { current } = node;
     const { current: parentNodeCurrent } = parentNode;
     if (
       (!current || !current.contains(target)) &&
       (!parentNode || !parentNodeCurrent || !parentNodeCurrent.contains(target))
     ) {
+      // e.stopPropagation();
+
       onDropdownHide();
       onBlur();
     }

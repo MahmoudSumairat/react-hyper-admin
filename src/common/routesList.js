@@ -3,6 +3,7 @@ import {
   faUsers,
   faList,
   faCalendarCheck,
+  faLocationDot,
 } from "@fortawesome/free-solid-svg-icons";
 import EventCategoriesList from "../pages/EventCategories/EventCategoriesList/EventCategoriesList";
 import CreateUpdateEventCategory from "../pages/EventCategories/CreateUpdateEventCategory/CreateUpdateEventCategory";
@@ -11,6 +12,8 @@ import Login from "../pages/Login/Login";
 import Users from "../pages/Users/Users";
 import EventTypesList from "../pages/EventTypes/EventTypesList/EventTypesList";
 import CreateUpdateEventType from "../pages/EventTypes/CreateUpdateEventType/CreateUpdateEventType";
+import LocationsList from "../pages/Locations/LocationsList/LocationsList";
+import CreateUpdateLocation from "../pages/Locations/CreateUpdateLocation/CreateUpdateLocation";
 
 export const getRoutes = (isAuthenticated) => [
   {
@@ -65,6 +68,26 @@ export const getRoutes = (isAuthenticated) => [
     hideFromMenu: true,
     pageLevel: 2,
     rootPage: "event-types",
+  },
+  {
+    name: "Locations",
+    path: "/locations",
+    component: LocationsList,
+    icon: faLocationDot,
+  },
+  {
+    name: "Add Location",
+    path: "/add-location",
+    component: CreateUpdateLocation,
+    hideFromMenu: true,
+  },
+  {
+    name: "Location Details",
+    path: "/locations/:locationId",
+    component: CreateUpdateLocation,
+    hideFromMenu: true,
+    pageLevel: 2,
+    rootPage: "locations",
   },
 ];
 

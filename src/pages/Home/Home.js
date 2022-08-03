@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import Box from "../../components/shared/Box/Box";
 import useModal from "../../hooks/useModal";
 import CommonButton from "../../components/shared/Button/Button";
+import Toggle from "../../components/shared/Toggle/Toggle";
 
 const { home } = styles;
 
@@ -11,6 +12,7 @@ const Home = () => {
 
   return (
     <Box className={home}>
+      <Toggle label="test toggle" />
       {/* <Form
         onSubmit={(data) => {
         }}
