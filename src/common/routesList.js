@@ -5,12 +5,12 @@ import {
   faCalendarCheck,
   faLocationDot,
   faLocationArrow,
+  faCalendar,
 } from "@fortawesome/free-solid-svg-icons";
 import EventCategoriesList from "../pages/EventCategories/EventCategoriesList/EventCategoriesList";
 import CreateUpdateEventCategory from "../pages/EventCategories/CreateUpdateEventCategory/CreateUpdateEventCategory";
 import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
-import Users from "../pages/Users/Users";
 import EventTypesList from "../pages/EventTypes/EventTypesList/EventTypesList";
 import CreateUpdateEventType from "../pages/EventTypes/CreateUpdateEventType/CreateUpdateEventType";
 import LocationsList from "../pages/Locations/LocationsList/LocationsList";
@@ -19,6 +19,8 @@ import LocationTypesList from "../pages/LocationTypes/LocationTypesList/Location
 import CreateUpdateLocationType from "../pages/LocationTypes/CreateUpdateLocationTypes/CreateUpdateLocationsTypes";
 import UsersList from "../pages/Users/UsersList/UsersList";
 import CreateUpdateUser from "../pages/Users/CreateUpdateUser/CreateUpdateUser";
+import EventsList from "../pages/Events/EventsList/EventsList";
+import CreateUpdateEvent from "../pages/Events/CreateUpdateEvent/CreateUpdateEvent";
 
 export const getRoutes = (isAuthenticated) => [
   {
@@ -47,6 +49,26 @@ export const getRoutes = (isAuthenticated) => [
     pageLevel: 2,
     rootPage: "users",
     component: CreateUpdateUser,
+  },
+  {
+    name: "Events",
+    path: "/events",
+    icon: faCalendar,
+    component: EventsList,
+  },
+  {
+    name: "Events",
+    path: "/events/add-event",
+    hideFromMenu: true,
+    component: CreateUpdateEvent,
+  },
+  {
+    name: "Events",
+    path: "/events/:eventId",
+    hideFromMenu: true,
+    pageLevel: 2,
+    rootPage: "events",
+    component: CreateUpdateEvent,
   },
   {
     name: "Event Categories",
