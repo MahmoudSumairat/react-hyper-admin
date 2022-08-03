@@ -1,5 +1,11 @@
 const getFormFields = (data) => [
   {
+    component: "toggle",
+    props: { name: "active", value: data.active, label: "Active" },
+    width: "full",
+    validations: [],
+  },
+  {
     component: "textInput",
     props: { name: "name", type: "text", value: data.name, label: "Name" },
     width: "full",

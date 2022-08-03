@@ -8,6 +8,7 @@ const EventSubCategories = ({ categoryId }) => {
   const [eventSubCategoryDetails, setEventSubCategoryDetails] = useState({
     name: "",
     description: "",
+    active: false,
   });
   const [subCategoryId, setSubCategoryId] = useState(null);
 

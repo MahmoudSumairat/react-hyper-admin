@@ -4,6 +4,7 @@ import {
   faList,
   faCalendarCheck,
   faLocationDot,
+  faLocationArrow,
 } from "@fortawesome/free-solid-svg-icons";
 import EventCategoriesList from "../pages/EventCategories/EventCategoriesList/EventCategoriesList";
 import CreateUpdateEventCategory from "../pages/EventCategories/CreateUpdateEventCategory/CreateUpdateEventCategory";
@@ -14,6 +15,8 @@ import EventTypesList from "../pages/EventTypes/EventTypesList/EventTypesList";
 import CreateUpdateEventType from "../pages/EventTypes/CreateUpdateEventType/CreateUpdateEventType";
 import LocationsList from "../pages/Locations/LocationsList/LocationsList";
 import CreateUpdateLocation from "../pages/Locations/CreateUpdateLocation/CreateUpdateLocation";
+import LocationTypesList from "../pages/LocationTypes/LocationTypesList/LocationTypesList";
+import CreateUpdateLocationType from "../pages/LocationTypes/CreateUpdateLocationTypes/CreateUpdateLocationsTypes";
 
 export const getRoutes = (isAuthenticated) => [
   {
@@ -37,7 +40,7 @@ export const getRoutes = (isAuthenticated) => [
   },
   {
     name: "Add Event Category",
-    path: "/add-event-category",
+    path: "event-categories/add-event-category",
     component: CreateUpdateEventCategory,
     hideFromMenu: true,
   },
@@ -57,7 +60,7 @@ export const getRoutes = (isAuthenticated) => [
   },
   {
     name: "Add Event Type",
-    path: "/add-event-type",
+    path: "event-types/add-event-type",
     hideFromMenu: true,
     component: CreateUpdateEventType,
   },
@@ -77,7 +80,7 @@ export const getRoutes = (isAuthenticated) => [
   },
   {
     name: "Add Location",
-    path: "/add-location",
+    path: "locations/add-location",
     component: CreateUpdateLocation,
     hideFromMenu: true,
   },
@@ -88,6 +91,26 @@ export const getRoutes = (isAuthenticated) => [
     hideFromMenu: true,
     pageLevel: 2,
     rootPage: "locations",
+  },
+  {
+    name: "Location Types",
+    path: "/location-types",
+    component: LocationTypesList,
+    icon: faLocationArrow,
+  },
+  {
+    name: "Add Location Type",
+    path: "/location-types/add-location-type",
+    component: CreateUpdateLocationType,
+    hideFromMenu: true,
+  },
+  {
+    name: "Location Type Details",
+    path: "/location-types/:locationTypeId",
+    component: CreateUpdateLocationType,
+    hideFromMenu: true,
+    pageLevel: 2,
+    rootPage: "location-types",
   },
 ];
 

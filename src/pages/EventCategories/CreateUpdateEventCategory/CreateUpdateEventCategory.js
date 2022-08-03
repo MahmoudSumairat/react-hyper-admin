@@ -15,6 +15,7 @@ const CreateUpdateEventCategory = () => {
   const [eventCategoryDetails, setEventCategoryDetails] = useState({
     name: "",
     description: "",
+    active: false,
   });
 
   useEffect(() => {

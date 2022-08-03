@@ -54,7 +54,7 @@ const EventCategoriesList = () => {
       rowTitle="event category"
       deleteRowClick={handleRowDelete}
       data={eventCategories}
-      addRowURL="/add-event-category"
+      addRowURL="add-event-category"
     />
   );
 };

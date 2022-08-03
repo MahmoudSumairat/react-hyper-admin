@@ -10,6 +10,7 @@ const CreateUpdateEventType = () => {
   const [eventTypeDetails, setEventTypeDetails] = useState({
     name: "",
     description: "",
+    active: false,
   });
   const [editMode, setEditMode] = useState(false);
   const navigate = useNavigate();

@@ -11,16 +11,10 @@ const {
   toggleLabelContainer,
 } = styles;
 
-const Toggle = ({ label, onChange, id = uuidv4(), ...props }) => {
+const Toggle = ({ label, id = uuidv4(), ...props }) => {
   return (
     <div className={toggleContainer}>
-      <input
-        id={id}
-        className={toggleInput}
-        onChange={(e) => onChange(e.target.checked)}
-        type="checkbox"
-        {...props}
-      />
+      <input id={id} className={toggleInput} type="checkbox" {...props} />
       <label className={toggleLabelContainer} htmlFor={id}>
         <span className={toggleLabel}> {label}</span>
         <span className={toggleSlider}>

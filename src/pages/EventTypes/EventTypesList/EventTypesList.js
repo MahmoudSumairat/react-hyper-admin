@@ -57,7 +57,7 @@ const EventTypesList = () => {
       columns={columns}
       data={eventTypes}
       deleteRowClick={onRowDelete}
-      addRowURL="/add-event-type"
+      addRowURL="add-event-type"
     />
   );
 };

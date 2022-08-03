@@ -54,7 +54,7 @@ const LocationsList = () => {
       columns={columns}
       data={locations}
       deleteRowClick={onRowDelete}
-      addRowURL="/add-location"
+      addRowURL="add-location"
     />
   );
 };

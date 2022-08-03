@@ -16,9 +16,7 @@ const NoDataBox = ({ tableTitle, addRowURL, onAddButtonClick, rowTitle }) => {
         There were no results found for {tableTitle}
       </h5>
       <CommonButton
-        onClick={() =>
-          addRowURL ? navigate(addRowURL, { replace: true }) : onAddButtonClick
-        }
+        onClick={() => (addRowURL ? navigate(addRowURL) : onAddButtonClick)}
         icon={faAdd}
         label={`new ${rowTitle}`}
       />{" "}
