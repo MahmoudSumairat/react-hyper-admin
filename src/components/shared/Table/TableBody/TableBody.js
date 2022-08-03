@@ -13,7 +13,9 @@ const TableBody = ({ prepareRow, page, getTableBodyProps, onRowClick }) => {
         return (
           <tr
             className={tableRow}
-            onClick={() => (onRowClick ? onRowClick(row) : navigate(row.id))}
+            onClick={() => {
+              onRowClick ? onRowClick(row) : navigate(`${row.original.id}`);
+            }}
             {...row.getRowProps()}
           >
             {row.cells.map((cell) => {

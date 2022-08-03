@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./styles.module.scss";
 import {
   formFieldWidth,
@@ -17,19 +17,27 @@ const { form, formActions, formButton, formHeader, formTitleText } = styles;
 
 const Form = ({
   formFields,
+  formData = getFormFieldsValues(formFields),
   editMode,
   submitButton = { text: "submit", color: "primary" },
   secondaryButton,
   onSubmit = () => {},
   formTitle = "create new item",
 }) => {
-  const [formFieldsValue, setFormFieldsValue] = useState(
-    getFormFieldsValues(formFields)
-  );
+  const [formFieldsValue, setFormFieldsValue] = useState(formData);
+
   const [formFieldErrors, setFormFieldErrors] = useState(
-    initFormFieldErrors(formFields)
+    initFormFieldErrors(formFields, editMode)
   );
+
   const [isFormValid, setIsFormValid] = useState(false);
+
+  useEffect(() => {
+    setFormFieldsValue({ ...formData });
+    setFormFieldErrors(initFormFieldErrors(formFields, editMode));
+
+    /* eslint-disable */
+  }, [editMode]);
 
   const handleComparableFieldChange = (field) => {
     if (field.validationParams && field.validationParams.compareWith) {
@@ -60,12 +68,16 @@ const Form = ({
         { withErrorMessage: withErrorMessages, ...field.validationParams }
       );
 
+      const isDirty = editMode
+        ? formData[field.props.name] !== target.value
+        : !!target.value;
+
       if (!isValid) {
         newFormFieldErrors[field.props.name] = {
           isValid,
           message,
           touched: true,
-          dirty: !!target.value,
+          dirty: isDirty,
         };
 
         return false;
@@ -74,7 +86,7 @@ const Form = ({
         isValid: true,
         message: null,
         touched: true,
-        dirty: !!target.value,
+        dirty: isDirty,
       };
 
       return true;
@@ -93,6 +105,7 @@ const Form = ({
     let touchedInputs = isInputsTouched(newFormFieldErrors);
     if (editMode) {
       let inputsDirty = isInputsDirty(newFormFieldErrors);
+
       return touchedInputs && validInputs && inputsDirty;
     }
     return touchedInputs && validInputs;
@@ -109,8 +122,8 @@ const Form = ({
             const formComponent = formComponentsMap[field.component];
             const valueProp =
               field.component === "checkbox"
-                ? { checked: formFieldsValue[field.props.name] }
-                : { value: formFieldsValue[field.props.name] };
+                ? { checked: formFieldsValue[field.props.name] || false }
+                : { value: formFieldsValue[field.props.name] || "" };
 
             return (
               <formComponent.component
@@ -119,11 +132,7 @@ const Form = ({
                 {...field.props}
                 width={formFieldWidth[field.width || "full"]}
                 onChange={(e) => handleFormFieldChange(e, field)}
-                onBlur={(e) =>
-                  !formFieldErrors[field.props.name].dirty
-                    ? handleFormFieldValidation(e, field)
-                    : null
-                }
+                onBlur={(e) => handleFormFieldValidation(e, field, true)}
                 error={formFieldErrors[field.props.name].message}
                 {...valueProp}
               />

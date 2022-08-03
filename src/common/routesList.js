@@ -17,6 +17,8 @@ import LocationsList from "../pages/Locations/LocationsList/LocationsList";
 import CreateUpdateLocation from "../pages/Locations/CreateUpdateLocation/CreateUpdateLocation";
 import LocationTypesList from "../pages/LocationTypes/LocationTypesList/LocationTypesList";
 import CreateUpdateLocationType from "../pages/LocationTypes/CreateUpdateLocationTypes/CreateUpdateLocationsTypes";
+import UsersList from "../pages/Users/UsersList/UsersList";
+import CreateUpdateUser from "../pages/Users/CreateUpdateUser/CreateUpdateUser";
 
 export const getRoutes = (isAuthenticated) => [
   {
@@ -30,7 +32,21 @@ export const getRoutes = (isAuthenticated) => [
     name: "Users",
     path: "/users",
     icon: faUsers,
-    component: Users,
+    component: UsersList,
+  },
+  {
+    name: "Add User",
+    path: "/users/add-user",
+    hideFromMenu: true,
+    component: CreateUpdateUser,
+  },
+  {
+    name: "User Details",
+    path: "/users/:userId",
+    hideFromMenu: true,
+    pageLevel: 2,
+    rootPage: "users",
+    component: CreateUpdateUser,
   },
   {
     name: "Event Categories",

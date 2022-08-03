@@ -13,6 +13,10 @@ const responseParser = (response) => {
     return Promise.reject("Response does not have data object.");
   }
 
+  if (response.config.method === "get") {
+    return response.data;
+  }
+
   return response;
 };
 

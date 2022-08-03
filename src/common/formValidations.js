@@ -25,6 +25,7 @@ const formValidations = {
     };
   },
   email: (value, name, { withErrorMessage }) => {
+    console.log(value, withErrorMessage);
     if (!value) {
       return {
         isValid: false,
@@ -35,9 +36,15 @@ const formValidations = {
         ),
       };
     }
+
     const emailRegex =
       /* eslint-disable-next-line */
       /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    console.log(
+      emailRegex.test(value),
+      validationMessages.getMessage(withErrorMessage, "email")
+    );
     return {
       isValid: emailRegex.test(value),
       message: validationMessages.getMessage(withErrorMessage, "email"),

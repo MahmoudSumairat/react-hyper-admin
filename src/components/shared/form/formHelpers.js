@@ -70,41 +70,31 @@ const formComponentsMap = {
 const getFormFieldsValues = (formFields) => {
   const formFieldsValues = {};
   formFields.forEach((field) => {
-    if (
-      field.props &&
-      field.props.name !== undefined &&
-      (field.props.value !== undefined || field.props.checked)
-    ) {
+    if (field.props.name) {
       formFieldsValues[field.props.name] =
         field.props.checked || field.props.value;
     } else {
-      return console.error(
-        'Error Building Common Form : Any form field should have "Name" and "Value" or "Checked" properties'
-      );
+      console.error("Any field should have a name property to build the form.");
     }
   });
+
   return formFieldsValues;
 };
 
-const initFormFieldErrors = (formFields) => {
+const initFormFieldErrors = (formFields, editMode) => {
   const formFieldErrors = {};
 
   formFields.forEach((field) => {
-    if (
-      field.props &&
-      field.props.name !== undefined &&
-      (field.props.value !== undefined || field.props.checked)
-    ) {
+    if (field.props.name) {
+      const hasValidation = editMode || !field.validations;
       formFieldErrors[field.props.name] = {
-        isValid: !field.validations.length,
-        touched: !field.validations.length,
+        isValid: hasValidation,
+        touched: hasValidation,
         message: "",
-        dirty: !field.validations.length,
+        dirty: false,
       };
     } else {
-      return console.error(
-        'Error Building Common Form : Any form field should have "Name" and "Value" or "Checked" properties'
-      );
+      console.error("Any field should have a name property to build the form.");
     }
   });
 
@@ -140,7 +130,7 @@ const isInputsDirty = (newFormFieldErrors) => {
 
   return inputsDirtyArray.reduce(
     (previousValue, currentValue) => previousValue || currentValue,
-    true
+    false
   );
 };
 

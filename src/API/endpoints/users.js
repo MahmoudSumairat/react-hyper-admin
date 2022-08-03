@@ -10,24 +10,15 @@ import {
 } from "../routes/users";
 
 const addUser = (userData) => {
-  return http
-    .post(addUserRoute(), userData)
-    .then(() => {})
-    .catch(() => {});
+  return http.post(addUserRoute(), userData);
 };
 
 const getUsers = () => {
-  return http
-    .get(getUsersRoute())
-    .then(() => {})
-    .catch(() => {});
+  return http.get(getUsersRoute());
 };
 
 const getUserDetails = (userId) => {
-  return http
-    .get(getUserDetailsRoute(userId))
-    .then(() => {})
-    .catch(() => {});
+  return http.get(getUserDetailsRoute(userId));
 };
 
 const updateUser = (userId, userData) => {
@@ -35,10 +26,7 @@ const updateUser = (userId, userData) => {
 };
 
 const deleteUser = (userId) => {
-  return http
-    .delete(deleteUserRoute(), { id: userId })
-    .then(() => {})
-    .catch(() => {});
+  return http.delete(deleteUserRoute(), { id: userId });
 };
 
 const usersEndpoints = {
