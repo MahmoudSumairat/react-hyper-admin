@@ -6,8 +6,8 @@ const { logo, logoFirstWord, logoLastWord } = styles;
 const Logo = () => {
   return (
     <div className={logo}>
-      <span className={logoFirstWord}>Tickatak</span>
-      <span className={logoLastWord}>Admin</span>
+      <span className={logoFirstWord}>React</span>
+      <span className={logoLastWord}>Hyper Admin</span>
     </div>
   );
 };
